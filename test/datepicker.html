@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Documenta</title>
+    <style>
+        #ui-datepicker-wrapper {
+            width: 240px;
+            font-size: 16px;
+            color: #666;
+            box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .8)
+        }
+        
+        #ui-datepicker-wrapper .ui-datepicker-header {
+            padding: 0;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            font-weight: bold;
+        }
+        
+        .ui-datepicker-btn {
+            font-family: serif;
+            font-size: 20px;
+            width: 40px;
+            height: 50px;
+            line-height: 50px;
+            color: #1abc9c;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .ui-datepicker-prev-btn {
+            float: left;
+        }
+        
+        .ui-datepicker-next-btn {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ui-datepicker-wrapper"></div>
+
+
+    <script src="../src/script/datapick.js"></script>
+    <script>
+        // 当月第一天  new Date(year ,month-1, 1)
+        // 当月最后一天 new Date(year ,month ,0)
+        // getFullYear()  getMonth()  getDate()   getDay()
+    </script>
+</body>
+
+</html>
