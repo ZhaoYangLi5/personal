@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 关闭电话号码识别： -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <title>OA系统</title>
+    <script src="script/flexible.js"></script>
+    <link rel="stylesheet" href="styles/persondaily.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>个人日报</h1>
+            <div id="ui-datepicker-wrapper"></div>
+        </header>
+        <nav>
+            <div class="weui-flex nav-search">
+                <div class="weui-flex__item">
+                    <span id="select-deparment" class="select">部门 </span>
+                    <i class="up"></i>
+                    <i class="down"></i>
+                    <ul id="all-deparment" class=" select-body">
+                        <li><a href="javascript:void(0);">部门</a></li>
+                        <li><a href="javascript:void(0);">企管</a></li>
+                        <li><a href="javascript:void(0);">财务</a></li>
+                        <li><a href="javascript:void(0);">开发</a></li>
+                    </ul>
+                </div>
+                <div class="weui-flex__item">
+                    <span id="select-name" class="select">姓名 </span>
+                    <i class="up"></i>
+                    <i class="down"></i>
+                    <ul id="all-name" class=" select-body">
+                        <li><a href="javascript:void(0);">姓名</a></li>
+                        <li><a href="javascript:void(0);">刘邦</a></li>
+                        <li><a href="javascript:void(0);">刘秀</a></li>
+                        <li><a href="javascript:void(0);">刘元</a></li>
+                        <li><a href="javascript:void(0);">刘媛</a></li>
+                        <li><a href="javascript:void(0);">聊天</a></li>
+                    </ul>
+                </div>
+                <div class="weui-flex__item">
+                    <span id="select-day" class="select">当天 </span>
+                    <i class="up"></i>
+                    <i class="down"></i>
+                    <ul id="all-day" class=" select-body">
+                        <li><a href="javascript:void(0);">当天</a></li>
+                        <li><a href="javascript:void(0);">近三天</a></li>
+                        <li><a href="javascript:void(0);">近五天</a></li>
+                        <li><a href="javascript:void(0);">近七天</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </nav>
+        <section>
+            <div class="weui-panel ">
+                <div class="weui-panel__bd" id="content">
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script src="script/require.js" data-main='script/persondaily.js'></script>
+    <script src="template.js"></script>
+    <script id="test" type="text/html">
+        {{each list as value i}}
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <img class="img/daily.png" src="img/daily.png">
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">{{value.name}}-{{value.daparment}}</h4>
+                <p class="weui-media-box__desc"><span>工作内容：</span>{{value.neirong}}</p>
+            </div>
+            <div class="weui-cell__ft">asdssf</div>
+        </a>
+        {{/each}}
+    </script>
+    <script>
+        var data = {
+            title: '基本例子',
+            isAdmin: true,
+            list: [{
+                name: '李平 - 企管部 -总监',
+                daparment: '开发部',
+                neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+            }, {
+                name: '李平',
+                daparment: '企管部',
+                neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+            }, {
+                name: '我今晚',
+                daparment: '开发部',
+                neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+            }, {
+                name: '李总监',
+                daparment: '市场部',
+                neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+            }, {
+                name: '李平总',
+                daparment: '运营部',
+                neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+            }, ]
+        };
+        var html = template('test', data);
+        document.getElementById('content').innerHTML = html;
+    </script>
+</body>
+
+</html>

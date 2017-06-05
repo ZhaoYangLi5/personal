@@ -1,0 +1,76 @@
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 关闭电话号码识别： -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <title>填写日报</title>
+    <script src="script/flexible.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <style>
+        .weui-cells_radio .weui-icon-checked::before {
+            content: "\EA01";
+            font-size: 23px;
+        }
+        
+        .weui-cells_radio .weui-check:checked+.weui-icon-checked:before {
+            content: "\EA06";
+            font-size: 23px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weui-flex weui-cells_radio">
+        <label class="weui-flex__item weui-check__label" for="x11">
+                <input type="radio" name="radio1" class="weui-check" id="x11" value="1"  >
+                <span class="weui-icon-checked"></span>
+                <span>项目</span>
+        </label>
+        <label class="weui-flex__item weui-check__label" for="x12">
+                <input type="radio" name="radio1" class="weui-check" id="x12" value="2" checked="checked">
+                <span class="weui-icon-checked"></span>
+               <span>管理</span>
+        </label>
+    </div>
+
+
+
+    <div class="weui-cells weui-cells_checkbox">
+        <label class="weui-cell weui-check__label" for="s11">
+    <div class="weui-cell__hd">
+      <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked">
+      <i class="weui-icon-checked"></i>
+    </div>
+    <div class="weui-cell__bd">
+      <p>standard is dealt for u.</p>
+    </div>
+  </label>
+        <label class="weui-cell weui-check__label" for="s12">
+    <div class="weui-cell__hd">
+      <input type="checkbox" name="checkbox1" class="weui-check" id="s12">
+      <i class="weui-icon-checked"></i>
+    </div>
+    <div class="weui-cell__bd">
+      <p>standard is dealicient for u.</p>
+    </div>
+  </label>
+        <a href="javascript:void(0);" class="weui-cell weui-cell_link">
+            <div class="weui-cell__bd">添加更多</div>
+        </a>
+    </div>
+
+
+
+
+
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+</body>
+
+</html>
