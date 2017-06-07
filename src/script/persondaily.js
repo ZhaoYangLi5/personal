@@ -12,7 +12,7 @@ require.config({
             '../../node_modules/jquery-weui/dist/lib/fastclick'
         ],
         'datepicker': ['./datapick'],
-        'template': ['../script/template'],
+        // 'template': ['../script/template'],
         'cookie': ['./cookie']
     },
     shim: {
@@ -22,7 +22,50 @@ require.config({
     }
 
 });
-require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function() {
+require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function($, weui, template) {
+    // ajax后台获取数据，并用前端模板进行拼接显示
+    $.ajax({
+        type: "GET",
+        async: false,
+        url: "http://192.168.98.23/salienoa/index.php/home/api/persenalsearch",
+        dataType: "jsonp",
+        data: "date=2017-05-28&org=421&daytype=3",
+        jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+        jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+        success: function(data) {
+            artTemp(personcontent, 'personContent', data);
+        },
+        error: function() {
+            alert("fail");
+        }
+    });
+
+    function artTemp(source, id, data) {
+        var render = template.compile(source);
+        var html = render({
+            data: data
+        });
+        document.getElementById(id).innerHTML = html;
+    }
+    var personcontent = '{{each data.data as value i}}' +
+        '<a href="viewdaily.html?taskexem_id={{value.TASKEXEM_ID}}" class="weui-media-box weui-media-box_appmsg">' +
+        '<div class="weui-media-box__hd">' +
+        '<p> {{value.TASKEXEM_DATE}}</p>' +
+        '</div>' +
+        '<div class="weui-media-box__bd">' +
+        '<h4 class="weui-media-box__title">{{value.U_NAME_FULL}}-{{value.ORG_NAME_FULL}}-{{value.RYLB}}</h4>' +
+        '<p class="weui-media-box__desc"><span>工作内容：</span>{{value.TASKEXEM_CONTENT}}</p>' +
+        '</div>' +
+        '<span class="weui-cell__ft" style="width:60px" data-href={{value.TASKEXEM_ID}}>' +
+        '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem"></i>' +
+        '</span>' +
+        '</a>' +
+        '{{/each}}'
+
+
+
+
+
     $(".nav-search").on('click', '.weui-flex__item', function() {
         hideAll();
         select();
@@ -53,61 +96,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         })
     }
 
-    // ajax后台获取数据，并用前端模板进行拼接显示
-    var data = {
-        title: '基本例子',
-        isAdmin: true,
-        list: [{
-            name: '李平2',
-            daparment: '开发部',
-            position: '经理',
-            neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-        }, {
-            name: '李平',
-            daparment: '企管部',
-            position: '总监',
-            neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-        }, {
-            name: '我今晚',
-            daparment: '开发部',
-            position: '开发人员',
-            neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-        }, {
-            name: '李总监',
-            daparment: '市场部',
-            position: '总监',
-            neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-        }, {
-            name: '李平总',
-            daparment: '运营部',
-            position: '总监',
-            neirong: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-        }, ]
-    };
 
-    var source = '{{each data.list as value i}}' +
-        '<a href="viewdaily.html?id={{value.name}}" class="weui-media-box weui-media-box_appmsg">' +
-        '<div class="weui-media-box__hd">' +
-        '<p>2017 <br>05-15</p>' +
-        '</div>' +
-        '<div class="weui-media-box__bd">' +
-        '<h4 class="weui-media-box__title">{{value.name}}-{{value.daparment}}-{{value.position}}</h4>' +
-        '<p class="weui-media-box__desc"><span>工作内容：</span>{{value.neirong}}</p>' +
-        '</div>' +
-        '<span class="weui-cell__ft" style="width:60px" data-href={{value.name}}>' +
-        '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem"></i>' +
-        '</span>' +
-        '</a>' +
-        '{{/each}}'
-        // var html = template('artContent', data);
-        // document.getElementById('content').innerHTML = html;
-
-    var render = template.compile(source);
-    var html = render({
-        data: data
-    });
-
-    document.getElementById('content').innerHTML = html;
 
     $('.weui-media-box').on('click', 'span', function() {
         var href = $(this)[0].dataset.href;
@@ -134,6 +123,16 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
             case 2:
                 return 2;
         }
+    }
+    // 获取cookie 的值
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
     }
 
 });

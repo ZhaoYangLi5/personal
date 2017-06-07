@@ -32,7 +32,7 @@ function checkCookie() {
 // u_name_full
 // org_id
 // rylb
-setCookie('user_ID', 111, 365);
+setCookie('user_ID', 1, 365);
 setCookie('u_name', "aj", 365);
 setCookie('u_name_full', "asjads", 365);
 setCookie('org_id', 8978, 365);

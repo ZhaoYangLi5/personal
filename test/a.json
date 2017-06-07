@@ -1,0 +1,9 @@
+{
+    "0": { "TASKEXEM_ID": "53830", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "22-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、讨论齐鲁、汇丰的交流情况；<br />\r\n2、指导现场工作；<br />\r\n3、着手pims导入saps的工作。", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
+    "1": { "TASKEXEM_ID": "53831", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "23-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、讨论总部轻收的模型导入导出功能<br />\r\n2、整理汇丰的功能架构，明确建模的程度", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
+    "2": { "TASKEXEM_ID": "53832", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "24-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、为现场准备价值链分析的讲解流程<br />\r\n2、讨论汇丰报价策略", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
+    "3": { "TASKEXEM_ID": "53833", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "25-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、pims转saps设计讨论，完成初版<br />\r\n2、SAPS的Excel建模模板完善<br />\r\n3、总部简化模型的设计讨论", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
+    "selectorg": null,
+    "selectuser": null,
+    "func": "flightHandler"
+}

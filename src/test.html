@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>测试jsonp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="css/style.css" rel="stylesheet">-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        $.ajax({
+            type: "GET",
+            async: false,
+            //url: "http://test/jsonp.php",
+            url: "http://192.168.98.23/salienoa/index.php/home/api/persenalsearch?uid=1523&date=2017-05-25&org=427&daytype=3&callback=callback",
+            dataType: "jsonp",
+            jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            success: function(data) {
+                console.log(JSON.stringify(data));
+
+            },
+            error: function() {
+                alert("fail");
+            }
+        });
+    </script>
+
+
+    <!--<script>
+        flightHandler({
+            "ORG_ID": "8",
+            "TASKM_ACCEPTOR": "4768",
+            "TASKEXEM_DATE": "20170522",
+            "TASKTYPE_ID": "326",
+            "PROJECT_ID": "11112",
+            "TASKEXEM_CONTENT": "1\u3001\u62db\u8058\uff1a\u5237\u65b0\u7b80\u5386\u4fe1\u606f\uff0c\u65b0\u589e\u517c\u804c\u7f8e\u5de5\u5c97\u4f4d\uff0c\u4e0b\u8f7d\u524d\u53f0\u7b80\u538615\u4efd\uff0c\u7ea6\u52304\u4eba\uff0c\u7ea6\u5230\u4ea7\u54c1\u7ecf\u7406\u52a9\u74061\u4eba\uff0c\u518d\u6b21\u7ea6\u4ea7\u54c1\u7ecf\u7406\u590d\u8bd5\uff1b 2\u3001\u5916\u90e8\u5408\u4f5c\uff1a3D\u6548\u679c\u56fe\u5916\u5305\uff0c\u627e\u9886\u5bfc\u7b7e\u5b57\uff0c\u4ea4\u8d22\u52a1\u51c6\u5907\u7b2c\u4e8c\u9636\u6bb5\u4ed8\u6b3e\uff1b 3\u3001\u5458\u5de5\u52b3\u52a8\u5173\u7cfb\uff1a\u8ddf\u9648\u65bd\u6c9f\u901a\u3001\u7ed9\u9ad8\u6052OA\u5bc6\u7801\u91cd\u7f6e\uff1b 4\u3001\u5176\u5b83\uff1a\u5411\u8001\u677f\u6c47\u62a5\u535a\u58eb\u9762\u8bd5\u60c5\u51b5\uff0c\u6c9f\u901a\u8c03\u67e5\u5177\u4f53\u5de5\u4f5c\u3002",
+            "TASKEXEM_HOUR": "8.5",
+            "TASKM_TYPE": "\u7ba1\u7406",
+            "TASKEXEM_SUBMITDATE": "24-5\u6708 -17",
+            "TASKM_CG": "\u7565",
+            "U_NAME_FULL": "\u674e\u5343\u60e0",
+            "RYLB": null,
+            "ORG_NAME_FULL": "\u4f01\u4e1a\u7ba1\u7406\u90e8",
+            "DAYREPORT_TYPE": "\u65e5\u5e38\u7ba1\u7406",
+            "PROJECT_NAME_FULL": null,
+            "func": "flightHandler"
+        })
+    </script>-->
+</body>
+
+</html>
