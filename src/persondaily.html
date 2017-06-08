@@ -25,7 +25,7 @@
         <nav>
             <div class="weui-flex nav-search">
                 <div class="weui-flex__item">
-                    <span id="select-deparment" class="select">部门 </span>
+                    <span id="select-deparment" class="select" data-org="">部门 </span>
                     <i class="up"></i>
                     <i class="down"></i>
                     <ul id="all-deparment" class=" select-body">
@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="weui-flex__item">
-                    <span id="select-name" class="select">姓名 </span>
+                    <span id="select-name" class="select" data-uid="">姓名 </span>
                     <i class="up"></i>
                     <i class="down"></i>
                     <ul id="all-name" class=" select-body">
@@ -49,14 +49,14 @@
                     </ul>
                 </div>
                 <div class="weui-flex__item">
-                    <span id="select-day" class="select">当天 </span>
+                    <span id="select-day" class="select" data-daytype="0">当天 </span>
                     <i class="up"></i>
                     <i class="down"></i>
                     <ul id="all-day" class=" select-body">
-                        <li><a href="javascript:void(0);">当天</a></li>
-                        <li><a href="javascript:void(0);">近三天</a></li>
-                        <li><a href="javascript:void(0);">近五天</a></li>
-                        <li><a href="javascript:void(0);">近七天</a></li>
+                        <li><a href="javascript:void(0);" data-daytype="0">当天</a></li>
+                        <li><a href="javascript:void(0);" data-daytype="1">近三天</a></li>
+                        <li><a href="javascript:void(0);" data-daytype="2">近五天</a></li>
+                        <li><a href="javascript:void(0);" data-daytype="3">近七天</a></li>
                     </ul>
                 </div>
             </div>
