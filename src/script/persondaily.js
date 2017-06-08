@@ -66,11 +66,13 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         document.getElementById(id).innerHTML = html;
     }
     template.helper('formatContent', function(str, new_str) {
-        var pattern = /(\<(\w+|\/\w+)\>)/g;
-        return str.replace(pattern, '');
-    })
+        return str.replace(/<[^>]+>/g, "");
+    });
+
+
+
     var personcontent = '{{each data.data as value i}}' +
-        '<a href="viewdaily.html?taskexem_id={{value.TASKEXEM_ID}}" class="weui-media-box                           weui-media-box_appmsg">' +
+        '<a href="viewdaily.html?taskexem_id={{value.TASKEXEM_ID}}" class="weui-media-box weui-media-box_appmsg">' +
         '<div class="weui-media-box__hd">' +
         '<p> {{value.TASKEXEM_DATE}}</p>' +
         '</div>' +
@@ -79,7 +81,9 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         '<p class="weui-media-box__desc"><span>工作内容：</span>{{value.TASKEXEM_CONTENT | formatContent:value.TASKEXEM_CONTENT}}</p>' +
         '</div>' +
         '<span class="weui-cell__ft" style="width:60px" data-href={{value.TASKEXEM_ID}}>' +
+        // '{{if value.U_NAME_FULL==cname}}' +
         '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem" onclick="skip({{value.TASKEXEM_ID}});"></i>' +
+        // '{{/if}}' +
         '</a>' +
         '{{/each}}'
 
