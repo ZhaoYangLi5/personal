@@ -2,7 +2,7 @@
  $.ajax({
      type: "GET",
      async: false,
-     url: "http://192.168.98.23/salienoa/index.php/home/api/persenaloa",
+     url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenaloa",
      dataType: "jsonp",
      data: href[0].substring(1) + "=" + href[1],
      jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -19,6 +19,13 @@
 
  template.helper('formatContent', function(str, new_str) {
      return str.replace(/<[^>]+>/g, "");
+ });
+ template.helper('formatclass', function(str, new_str) {
+     if (str == 1) {
+         return new_str = "项目";
+     } else if (str == 2) {
+         return new_str = "管理";
+     }
  });
 
  function artTemp(source, id, data) {
@@ -43,7 +50,7 @@
      '<i class="icon-content"></i>' +
      '</div>' +
      '<div class="weui-cell__bd ">' +
-     '<p>工作内容：<span>{{data.TASKEXEM_CONTENT | formatContent:data.TASKEXEM_CONTENT}}</span></p>' +
+     '<p>工作内容：<span>{{data.TASKEXEM_CONTENT |  formatContent:data.TASKEXEM_CONTENT}}</span></p>' +
      '</div>' +
      '</div>' +
      '<div class="weui-cell">' +
@@ -57,11 +64,11 @@
      '</div>'
  var viewbody = '<div class="weui-flex ">' +
      '<div class="weui-flex__item">' +
-     '<h3>{{data.TASKM_TYPE}}</h3>' +
+     '<h3>{{data.TASKM_TYPE | formatclass: data.TASKM_TYPE}}</h3>' +
      '<p>工作分类</p>' +
      '</div>' +
      '<div class="weui-flex__item">' +
-     '<h3>{{data.DAYREPORT_TYPE}}</h3>' +
+     '<h3>{{data.DAYREPORT_TYPE }}</h3>' +
      '<p>工作类型</p>' +
      '</div>' +
      '<div class="weui-flex__item">' +

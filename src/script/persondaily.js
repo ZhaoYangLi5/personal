@@ -36,7 +36,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://192.168.98.23/salienoa/index.php/home/api/persenalsearch",
+            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenalsearch",
             dataType: "jsonp",
             data: 'date=' + date + '&org=' + org + '&uid=' + uid + '&daytype=' + daytype,
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)

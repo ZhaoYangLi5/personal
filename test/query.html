@@ -49,7 +49,7 @@
     </div>
 
 
-
+    <script src="./jquery-2.1.4.js"></script>
     <script>
         /**
          * Created by Steven on 2016-10-25.
@@ -58,7 +58,58 @@
         var oBtn = document.getElementById('btn');
         var oList = document.getElementById('list');
 
-        var fruits = ["桃子", "苹果", "梨子", "香蕉", "香瓜", "葡萄", "柠檬", "橘子", "草莓", "桃子桃子桃子桃子桃子", "桃子桃子", "桃子桃子桃子"];
+        var fruits = [{
+            name: "需求对接",
+            num: 2180
+        }, {
+            name: "需求分析",
+            num: 2181
+        }, {
+            name: "规划评审",
+            num: 2182
+        }, {
+            name: "产品设计",
+            num: 2183
+        }, {
+            name: "设计评审",
+            num: 2184
+        }, {
+            name: "界面交互设计",
+            num: 2185
+        }, {
+            name: "数据验证",
+            num: 2186
+        }, {
+            name: "详细用例",
+            num: 2187
+        }, {
+            name: "交互设计评审",
+            num: 2188
+        }, {
+            name: "技术支持",
+            num: 609
+        }, {
+            name: "工作汇报",
+            num: 610
+        }, {
+            name: "用户培训",
+            num: 611
+        }, {
+            name: "系统测试",
+            num: 612
+        }, {
+            name: "数据准备",
+            num: 613
+        }, {
+            name: "上线准备",
+            num: 614
+        }, {
+            name: "验收准备",
+            num: 615
+        }, {
+            name: "项目会议",
+            num: 616
+        }];
         //点击事件
         oBtn.addEventListener('click', function() {
             var keyWord = oTxt.value;
@@ -76,13 +127,19 @@
                 renderFruits(fruitList);
             }
         }, false);
-        oTxt.addEventListener('keyup', function(e) {
-            var keyWord = oTxt.value;
-            // var fruitList = searchByIndexOf(keyWord,fruits);
+        // oTxt.addEventListener('keyup', function(e) {
+        //     var keyWord = oTxt.value;
+        //     // var fruitList = searchByIndexOf(keyWord,fruits);
+        //     var fruitList = searchByRegExp(keyWord, fruits);
+        //     renderFruits(fruitList);
+        //     document.getElementById('list').style.display = "block"
+        // }, false);
+        $("#txt").on('keyup', function() {
+            var keyWord = $(this).val();
             var fruitList = searchByRegExp(keyWord, fruits);
             renderFruits(fruitList);
-            document.getElementById('list').style.display = "block"
-        }, false);
+            $("#list").css('display', "block");
+        })
         oTxt.addEventListener('blur', function(e) {
             // document.getElementById('list').style.display = "none"
         })
@@ -96,8 +153,9 @@
             var item = null;
             for (var i = 0; i < len; i++) {
                 item = document.createElement('li');
-                item.innerHTML = list[i];
-                oList.appendChild(item);
+                item.innerHTML = list[i].name;
+                item.dataset.num = list[i].num;
+                oList.append(item);
             }
         }
 
@@ -126,13 +184,22 @@
             var reg = new RegExp(keyWord);
             for (var i = 0; i < len; i++) {
                 //如果字符串中不包含目标字符会返回-1
-                if (list[i].match(reg)) {
+                console.log(reg);
+                console.log(list[i].name);
+                if (list[i].name.match(reg)) {
                     arr.push(list[i]);
                 }
             }
+            console.log(arr);
             return arr;
+
         }
         renderFruits(fruits);
+        $("#list").on('click', 'li', function() {
+            $("#txt").val($(this).html());
+            $("#txt").data('num', $(this).data('num'));
+            $("#list").hide();
+        })
     </script>
 </body>
 
