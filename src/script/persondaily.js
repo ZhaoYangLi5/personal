@@ -25,30 +25,31 @@ require.config({
 
 function skip(href) {
     event.preventDefault();
-    // alert(1);
     window.open('../modifydaily.html?taskexem_id=' + href, "_self");
 };
 require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function($, weui, template) {
-    var date = $(".ui-datepicker-curr-month").text().slice(0, 10);
-    var org = $("#select-deparment").data('org');
-    var daytype = $("#select-day").data('daytype');
-    var uid = $("#select-name").data('uid');
+
 
     // ajax后台获取数据，并用前端模板进行拼接显示
     // data变化 org变化  uid变化  daytype变化  
-    function getContent(date, org, daytype, uid) {
+    function getContent(date, org, daytype, uid, type) {
         $.ajax({
             type: "GET",
             async: false,
             url: "http://192.168.98.23/salienoa/index.php/home/api/persenalsearch",
             dataType: "jsonp",
-            // data: "date=2017-05-22&org=421&daytype=3",
             data: 'date=' + date + '&org=' + org + '&uid=' + uid + '&daytype=' + daytype,
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
+                console.log(type);
                 artTemp(personcontent, 'personContent', data);
-                artTemp(alldeparment, 'all-deparment', data);
+                if (type == "0") {
+                    artTemp(allorg, 'org', data);
+                    artTemp(alluid, 'uid', data);
+                } else if (type == "1") {
+                    artTemp(alluid, 'uid', data);
+                }
                 setStorage(data);
             },
             error: function() {
@@ -69,8 +70,6 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         return str.replace(/<[^>]+>/g, "");
     });
 
-
-
     var personcontent = '{{each data.data as value i}}' +
         '<a href="viewdaily.html?taskexem_id={{value.TASKEXEM_ID}}" class="weui-media-box weui-media-box_appmsg">' +
         '<div class="weui-media-box__hd">' +
@@ -87,60 +86,41 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         '</a>' +
         '{{/each}}'
 
-
-    var alldeparment = '<li><a href="javascript:void(0); data-org=" ">部门</a></li>' +
+    var allorg = '<option value="">部门</option>' +
         '{{each data.selectorg as value i}}' +
-        '<li><a href="javascript:void(0);" data-org="{{value.ORG_ID}}">{{value.U_NAME_FULL}}</a></li>' +
+        '<option value="{{value.ORG_ID}}">{{value.U_NAME_FULL}}</option>' +
+        '{{/each}}'
+    var alluid = '<option value="">姓名</option>' +
+        '{{each data.selectuser as value i}}' +
+        '<option value="{{value.USER_ID}}">{{value.U_NAME_FULL}}</option>' +
         '{{/each}}'
 
-
-
-
-    $(".nav-search").on('click', '.weui-flex__item', function() {
-        hideAll();
-        select();
-        $(this).find('ul').css('display', 'block');
-        $(this).find('span').css('color', '#ccc');
-        $(this).find('.down').css('display', 'inline-block');
-        $(this).find('.up').css('display', 'none');
-        return false;
-    });
-
-    function hideAll() {
-        $('.weui-flex__item').each(function(i, item) {
-            $('.weui-flex__item').find('ul').css('display', 'none');
-            $('.weui-flex__item').find('span').css('color', '#000');
-            $('.weui-flex__item').find('.up').css('display', 'inline-block');
-            $('.weui-flex__item').find('.down').css('display', 'none');
-        });
-    }
-
-    function select() {
-        $('.weui-flex__item').on('click', 'li', function(i, item) {
-            $(this).parent().parent().find('.select').html($(this).find('a').html()).data('daytype', $(this).find('a').data("daytype")).data('org', $(this).find('a').data("org"));
+    function query() {
+        $('.weui-flex__item').on('change', '.weui-select', function(e) {
             var date = $(".ui-datepicker-curr-month").text().slice(0, 10);
-            var org = $("#select-deparment").data('org');
-            var daytype = $("#select-day").data('daytype');
-            var uid = $("#select-name").data('uid');
-            getContent(date, org, daytype, uid);
-            $(this).parent().css('display', 'none');
-            $(this).parent().parent().find('.select').css('color', "#000");
-            $(this).parent().parent().find('.up').css('display', 'inline-block');
-            $(this).parent().parent().find('.down').css('display', 'none');
-            return false;
+            var org = $("#org").val() || "";
+            var daytype = $("#dayType").val() || 0;
+            var uid = $("#uid").val() || "";
+            if (e.target.id == "dayType" || e.target.id == "uid") {
+                getContent(date, org, daytype, uid, 2);
+            } else if (e.target.id == "org") {
+                uid = "";
+                getContent(date, org, daytype, uid, 1);
+            } else {
+                getContent(date, org, daytype, uid, 0);
+            }
         })
     }
+    query();
+
     // 时间选择框进行更改显示内容
     $('.ui-datepicker-btn').on('click', function() {
         var date = $(".ui-datepicker-curr-month").text().slice(0, 10);
-        var org = $("#select-deparment").data('org');
-        var daytype = $("#select-day").data('daytype');
-        var uid = $("#select-name").data('uid');
-        getContent(date, org, daytype, uid);
+        var org = $("#org").val() || "";
+        var daytype = $("#dayType").val() || 0;
+        var uid = $("#uid").val() || "";
+        getContent(date, org, daytype, uid, 2);
     })
-
-
-
 
     // 限制字符个数
     $(".weui-media-box__desc").each(function() {
@@ -151,42 +131,37 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         }
     });
     // 检测cookie的值
-    function checkCookie(cname) {
-        var cvalue = getCookie(cname);
-        switch (cvalue) {
-            case 0:
-                return 0;
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-        }
-    }
+    // function checkCookie(cname) {
+    //     var cvalue = getCookie(cname);
+    //     switch (cvalue) {
+    //         case 0:
+    //             return 0;
+    //         case 1:
+    //             return 1;
+    //         case 2:
+    //             return 2;
+    //     }
+    // }
     // 获取cookie 的值
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-        }
-        return "";
-    }
+    // function getCookie(cname) {
+    //     var name = cname + "=";
+    //     var ca = document.cookie.split(';');
+    //     for (var i = 0; i < ca.length; i++) {
+    //         var c = ca[i].trim();
+    //         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    //     }
+    //     return "";
+    // }
 
     // sessionstorage存储
     function setStorage(sdata) {
         var aList = JSON.stringify(sdata); //把json数据转为string字符串
         var aParam = {
-            // page: conf.page, //当前页码
             date: $('.ui-datepicker-curr-month').text(),
             top: $(window).scrollTop(),
-            org: $("#select-deparment").data('org'),
-            horg: $("#select-deparment").text(),
-            daytype: $("#select-day").data('daytype'),
-            hdaytype: $("#select-day").html(),
-            uid: $("#select-name").data('uid'),
-            huid: $("#select-name").html()
-                // nomore: !$('#J_noMore').hasClass('hide')
+            org: $("#org").val(),
+            daytype: $("#dayType").val(),
+            uid: $("#uid").val(),
         };
         aParam = JSON.stringify(aParam);
         sessionStorage.setItem('aList', aList); //sessionStorage只能存储string字符串
@@ -202,8 +177,11 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         // window.listData = aList ? aList : '';
         if (aList != null) {
             // 加载列表
+            // artTemp(personcontent, 'personContent', aList);
+            // artTemp(alldeparment, 'all-deparment', aList);
             artTemp(personcontent, 'personContent', aList);
-            artTemp(alldeparment, 'all-deparment', aList);
+            artTemp(alluid, 'uid', aList);
+            artTemp(allorg, 'org', aList);
             // 更新加载状态
             // if (aParam.nomore) {
             //     $('#auditin').addClass('nomore');
@@ -217,15 +195,19 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             document.body.scrollTop = aParam.top;
             // conf.page = aParam.page;
             $('.ui-datepicker-curr-month').text(aParam.date);
-            $('#select-day').data('daytype', aParam.daytype).html(aParam.hdaytype);
-            $('#select-deparment').data('org', aParam.org).html(aParam.horg);
-            $('#select-name').data('uid', aParam.uid).html(aParam.huid);
+            $('#dayType').val(aParam.daytype);
+            $('#org').val(aParam.org);
+            $('#uid').val(aParam.uid);
             // sessionStorage.removeItem('aList');
             // sessionStorage.removeItem('aParam');
         } else {
-            getContent(date, org, daytype, uid);
+            var date = $(".ui-datepicker-curr-month").text().slice(0, 10);
+            var org = $("#org").val() || "";
+            var daytype = $("#dayType").val() || 0;
+            var uid = $("#uid").val() || "";
+            getContent(date, org, daytype, uid, 0);
         }
     };
-    backList()
+    backList();
 
 });

@@ -11,25 +11,155 @@
     <script src="script/flexible.js"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="styles/writedaily.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <style>
+        .weui-cells_radio .weui-icon-checked::before {
+            content: "\EA01";
+            font-size: 23px;
+        }
+        
+        .weui-cells_radio .weui-check:checked+.weui-icon-checked:before {
+            content: "\EA06";
+            font-size: 23px;
+        }
+        
+        #ui-datepicker-wrapper {
+            width: 210px;
+            font-size: 16px;
+            color: #666;
+            /*box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .8)*/
+        }
+        
+        #ui-datepicker-wrapper .ui-datepicker-header {
+            padding: 0;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            /*background: #f0f0f0;*/
+            /*border-bottom: 1px solid #ccc;*/
+            font-weight: bold;
+        }
+        
+        .ui-datepicker-btn {
+            font-family: serif;
+            font-size: 20px;
+            width: 30px;
+            height: 50px;
+            line-height: 50px;
+            color: #1abc9c;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .ui-datepicker-prev-btn {
+            float: left;
+        }
+        
+        .ui-datepicker-next-btn {
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <h2 style="text-align:center;margin-bottom:-20px;font-size:18px;line-height:36px;height:36px;" id="title"></h2>
+    </header>
+    <div class="weui-cells">
+        <div class="weui-cell" id="jobClassification">
+            <div class="weui-cell__hd"><i class="icon-classify"></i></div>
+            <div class="weui-cell__bd">
+                <p>工作分类</p>
+            </div>
+            <div class="weui-cell__ft weui-flex weui-cells_radio">
+                <label class="weui-flex__item weui-check__label" for="x11">
+                <input type="radio" name="radio1" class="weui-check" id="x11" value="1"  checked="checked">
+                <span class="weui-icon-checked"></span>
+                <span>项目</span>
+            </label>
+                <label class="weui-flex__item weui-check__label" for="x12">
+                <input type="radio" name="radio1" class="weui-check" id="x12" value="2"  >
+                <span class="weui-icon-checked"></span>
+               <span>管理</span>
+            </label>
+            </div>
+        </div>
 
-    <select class="weui-select" name="select2">
-            <option value="1">中国</option>
-            <option value="2">美国</option>
-            <option value="3">英国</option>
-          <option value="3">英国</option><option value="3">英国</option><option value="3">英国</option><option value="3">英国</option><option value="3">英国</option></select>
-    <select class="weui-select" name="select2">
-            <option value="1">中国</option>
-            <option value="2">美国</option>
-            <option value="3">英国</option>
-          <option value="3">英国</option><option value="3">英国</option><option value="3">英国</option><option value="3">英国</option><option value="3">英国</option></select>
+        <div class="weui-cell weui-cell_select weui-cell_select-after" id="jobType">
+            <div class="weui-cell__hd"><i class="icon-job"></i></div>
+            <div class="weui-cell__bd">
+                <p>工作类型</p>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="select2" id="jobtype">
+                </select>
+            </div>
+        </div>
+
+        <div class="weui-cell" id="jobDate">
+            <div class="weui-cell__hd"><i class="icon-time"></i></div>
+            <div class="weui-cell__bd">
+                <p>时间</p>
+            </div>
+            <div class="weui-cell__rt" id="ui-datepicker-wrapper"></div>
+        </div>
+
+        <div class="weui-cell project" id="jobProject">
+            <div class="weui-cell__hd"><i class="icon-project"></i></div>
+            <div class="weui-cell__bd">
+                <p>所属项目</p>
+            </div>
+            <input type="text" value="" id="project">
+            <ul id="list">
+
+            </ul>
+        </div>
 
 
-    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-    <script src="script/flexible.js"></script>
-    <script src="http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+        <div class="weui-cell" id="jobTime">
+            <div class="weui-cell__hd"><i class="icon-system"></i></div>
+            <div class="weui-cell__bd">
+                <p>工时</p>
+            </div>
+            <div class="weui-cell__ft weui-slider-box" id="slider1" style="
+    width: 200px;">
+                <div class="weui-slider">
+                    <div id="sliderInner" class="weui-slider__inner">
+                        <div id="sliderTrack" style="width: 0%;" class="weui-slider__track"></div>
+                        <div id="sliderHandler" style="left: 0%;" class="weui-slider__handler"></div>
+                    </div>
+                </div>
+                <div id="sliderValue" class="weui-slider-box__value">0</div>
+            </div>
+        </div>
+
+
+        <div class="weui-cells__title"><i class="weui-icon-success weui-icon_msg"></i> 工作内容</div>
+        <div class="weui-cells weui-cells_form" id="jobContent">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title"><i class="weui-icon-success weui-icon_msg"></i> 工作结果</div>
+        <div class="weui-cells weui-cells_form" id="jobResults">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script/datapick.js"></script>
+    <script src="script/require.js" data-main='script/modifydaily.js'></script>
 </body>
 
 </html>

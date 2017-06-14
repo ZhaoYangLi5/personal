@@ -25,39 +25,19 @@
         <nav>
             <div class="weui-flex nav-search">
                 <div class="weui-flex__item">
-                    <span id="select-deparment" class="select" data-org="">部门 </span>
-                    <i class="up"></i>
-                    <i class="down"></i>
-                    <ul id="all-deparment" class=" select-body">
-                        <li><a href="javascript:void(0);">部门</a></li>
-                        <li><a href="javascript:void(0);">企管</a></li>
-                        <li><a href="javascript:void(0);">财务</a></li>
-                        <li><a href="javascript:void(0);">开发</a></li>
-                    </ul>
+                    <select class="weui-select" name="select2" id="org">
+                    </select>
                 </div>
                 <div class="weui-flex__item">
-                    <span id="select-name" class="select" data-uid="">姓名 </span>
-                    <i class="up"></i>
-                    <i class="down"></i>
-                    <ul id="all-name" class=" select-body">
-                        <li><a href="javascript:void(0);">姓名</a></li>
-                        <li><a href="javascript:void(0);">刘邦</a></li>
-                        <li><a href="javascript:void(0);">刘秀</a></li>
-                        <li><a href="javascript:void(0);">刘元</a></li>
-                        <li><a href="javascript:void(0);">刘媛</a></li>
-                        <li><a href="javascript:void(0);">聊天</a></li>
-                    </ul>
+                    <select id="uid" class="weui-select"> </select>
                 </div>
                 <div class="weui-flex__item">
-                    <span id="select-day" class="select" data-daytype="0">当天 </span>
-                    <i class="up"></i>
-                    <i class="down"></i>
-                    <ul id="all-day" class=" select-body">
-                        <li><a href="javascript:void(0);" data-daytype="0">当天</a></li>
-                        <li><a href="javascript:void(0);" data-daytype="1">近三天</a></li>
-                        <li><a href="javascript:void(0);" data-daytype="2">近五天</a></li>
-                        <li><a href="javascript:void(0);" data-daytype="3">近七天</a></li>
-                    </ul>
+                    <select id="dayType" class="weui-select">    
+                        <option value="0" selected = "selected">当天</option>
+                        <option value="1">近三天</option>
+                        <option value="2">近五天</option>
+                        <option value="3">近七天</option> 
+                    </select>
                 </div>
             </div>
         </nav>

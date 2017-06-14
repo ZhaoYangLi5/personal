@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/jquery-weui/dist/lib/weui.min.css">
+</head>
+
+<body>
+    <div class="weui-slider-box">
+        <div class="weui-slider" id="slider">
+            <div id="sliderInner" class="weui-slider__inner">
+                <div id="sliderTrack" style="width: 38%;" class="weui-slider__track"></div>
+                <div id="sliderHandler" style="left: 38%;" class="weui-slider__handler"></div>
+            </div>
+        </div>
+        <div id="sliderValue" class="weui-slider-box__value">38</div>
+    </div>
+</body>
+<script src="../node_modules/jquery-weui/dist/lib/zepto.js"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+<script>
+    weui.alert('alert');
+    weui.slider('#slider', {
+        step: 10,
+        defaultValue: 50,
+        onChange: function(percent) {
+            $("#sliderValue").html(percent);
+        }
+    });
+</script>
+
+</html>

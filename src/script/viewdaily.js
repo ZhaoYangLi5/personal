@@ -17,6 +17,10 @@
      }
  });
 
+ template.helper('formatContent', function(str, new_str) {
+     return str.replace(/<[^>]+>/g, "");
+ });
+
  function artTemp(source, id, data) {
      var render = template.compile(source);
      var html = render({
@@ -39,7 +43,7 @@
      '<i class="icon-content"></i>' +
      '</div>' +
      '<div class="weui-cell__bd ">' +
-     '<p>工作内容：<span>{{data.TASKEXEM_CONTENT}}</span></p>' +
+     '<p>工作内容：<span>{{data.TASKEXEM_CONTENT | formatContent:data.TASKEXEM_CONTENT}}</span></p>' +
      '</div>' +
      '</div>' +
      '<div class="weui-cell">' +

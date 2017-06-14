@@ -1,9 +1,33 @@
 {
-    "0": { "TASKEXEM_ID": "53830", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "22-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、讨论齐鲁、汇丰的交流情况；<br />\r\n2、指导现场工作；<br />\r\n3、着手pims导入saps的工作。", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
-    "1": { "TASKEXEM_ID": "53831", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "23-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、讨论总部轻收的模型导入导出功能<br />\r\n2、整理汇丰的功能架构，明确建模的程度", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
-    "2": { "TASKEXEM_ID": "53832", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "24-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、为现场准备价值链分析的讲解流程<br />\r\n2、讨论汇丰报价策略", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
-    "3": { "TASKEXEM_ID": "53833", "ORG_ID": "427", "TASKM_ACCEPTOR": "1523", "TASKEXEM_DATE": "25-5月 -17", "TASKTYPE_ID": "614", "PROJECT_ID": "7233", "TASKEXEM_CONTENT": "1、pims转saps设计讨论，完成初版<br />\r\n2、SAPS的Excel建模模板完善<br />\r\n3、总部简化模型的设计讨论", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "05-6月 -17" },
-    "selectorg": null,
-    "selectuser": null,
-    "func": "flightHandler"
-}
+    "selectorg": [
+        { "ORG_ID": "341", "U_NAME_FULL": "\u673a\u7535\u5de5\u7a0b" },
+        { "ORG_ID": "421", "U_NAME_FULL": "\u65e5\u4f18\u5316\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "261", "U_NAME_FULL": "\u534e\u4e1c\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "381", "U_NAME_FULL": "\u6570\u636e\u5e93\u5f00\u53d1\u90e8" },
+        { "ORG_ID": "382", "U_NAME_FULL": "\u5e94\u7528\u5f00\u53d1\u4e8c\u90e8" },
+        { "ORG_ID": "384", "U_NAME_FULL": "\u5e94\u7528\u5f00\u53d1\u4e00\u90e8" },
+        { "ORG_ID": "401", "U_NAME_FULL": "UI\u90e8" },
+        { "ORG_ID": "422", "U_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "55", "U_NAME_FULL": "\u5e02\u573a\u9500\u552e\u90e8" },
+        { "ORG_ID": "8", "U_NAME_FULL": "\u4f01\u4e1a\u7ba1\u7406\u90e8" },
+        { "ORG_ID": "33", "U_NAME_FULL": "\u8bbe\u5907\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "5", "U_NAME_FULL": "\u65f6\u6797\u516c\u53f8" },
+        { "ORG_ID": "6", "U_NAME_FULL": "\u5f00\u53d1\u4e2d\u5fc3" },
+        { "ORG_ID": "34", "U_NAME_FULL": "\u8d22\u52a1\u90e8" },
+        { "ORG_ID": "199", "U_NAME_FULL": "\u673a\u7535\u7814\u53d1" },
+        { "ORG_ID": "221", "U_NAME_FULL": "\u8ba1\u91cf\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "223", "U_NAME_FULL": "\u80fd\u6e90\u4e8b\u4e1a\u90e8" },
+        { "ORG_ID": "229", "U_NAME_FULL": "\u5de5\u7a0b\u4e2d\u5fc3" },
+        { "ORG_ID": "424", "U_NAME_FULL": "\u7efc\u5408\u9879\u76ee\u4e8b\u4e1a\u90e8" }, { "ORG_ID": "426", "U_NAME_FULL": "\u5357\u4eac\u5927\u9879\u76ee\u90e8" },
+        { "ORG_ID": "427", "U_NAME_FULL": "\u7814\u7a76\u6240" },
+        { "ORG_ID": "442", "U_NAME_FULL": "\u7ec4\u4ef6\u90e8" },
+        { "ORG_ID": "441", "U_NAME_FULL": "\u6570\u91c7\u90e8" }
+    ],
+    "selectuser": [{ "ORG_ID": "422", "USER_ID": "6548", "U_NAME": "bijiawei", "U_NAME_FULL": "\u6bd5\u5bb6\u5a01", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5" },
+        { "ORG_ID": "422", "USER_ID": "5968", "U_NAME": "haoshuai", "U_NAME_FULL": "\u90dd\u5e05", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5" }, { "ORG_ID": "422", "USER_ID": "5848", "U_NAME": "zhangzizhou", "U_NAME_FULL": "\u5f20\u5b50\u5468", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5" },
+        { "ORG_ID": "422", "USER_ID": "3230", "U_NAME": "liuhang", "U_NAME_FULL": "\u5218\u884c", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5" }, { "ORG_ID": "422", "USER_ID": "487", "U_NAME": "lizhijian", "U_NAME_FULL": "\u674e\u5fd7\u575a", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u4e8b\u4e1a\u90e8\u7ecf\u7406" },
+        { "ORG_ID": "422", "USER_ID": "465", "U_NAME": "caoyanjun", "U_NAME_FULL": "\u66f9\u71d5\u519b", "PASSWORD": "c4ca4238a0b923820dcc509a6f75849b", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5" }
+    ],
+    "data": [
+            { "TASKEXEM_ID": "53901", "ORG_ID": "422", "TASKM_ACCEPTOR": "6548", "TASKEXEM_DATE": "2017-06-07", "TASKTYPE_ID": "609", "PROJECT_ID": "8453", "TASKEXEM_CONTENT": "\u4e09\u57fa\u5e73\u53f0\u7cfb\u7edf\u516c\u53f8\u7ea7\u5c97\u68c0\u627f\u5305\u5546\u6d41\u7a0b\u6d4b\u8bd5\u901a\u8fc7\uff0c\u65b0\u529f\u80fd\u9700\u6c42\u6d4b\u8bd5\u53cd\u9988\uff0c\u6574\u7406\u53cd\u9988\u6587\u6863\uff0c\u53ca\u65f6\u56de\u590d\u5e76\u89e3\u51b3\u73b0\u573a\u5ba2\u6237\u53cd\u9988\u7684\u95ee\u9898\u3002", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "2017-06-07", "U_NAME_FULL": "\u6bd5\u5bb6\u5a01", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "DAYREPORT_TYPE": "\u6280\u672f\u652f\u6301", "PROJECT_NAME_FULL": "\u91d1\u9675\u77f3\u5316\u4e09\u57fa\u7ba1\u7406\u5e73\u53f0" },
+            { "TASKEXEM_ID": "53938", "ORG_ID": "422", "TASKM_ACCEPTOR": "5968", "TASKEXEM_DATE": "2017-06-07", "TASKTYPE_ID": "609", "PROJECT_ID": "8453", "TASKEXEM_CONTENT": "\u6d4b\u8bd5\u627f\u5305\u5546\u529f\u80fd\u4e0e\u6d41\u7a0b\u548c\u5c97\u68c0\u8ba1\u5212\u4e1a\u52a1\u4e3b\u7ba1\u90e8\u95e8\u81ea\u52a8\u7ec4\u6001\u529f\u80fd\uff0c\u6709\u95ee\u9898\u53ca\u65f6\u53cd\u9988", "TASKEXEM_HOUR": "8", "TASKM_TYPE": "1", "TASKEXEM_SUBMITDATE": "2017-06-08", "U_NAME_FULL": "\u90dd\u5e05", "RYLB": "\u5de5\u7a0b\u666e\u901a\u5458\u5de5", "ORG_NAME_FULL": "\u7ee9\u6548\u4e8b\u4e1a\u90e8", "DAYREPORT_TYPE": "\u6280\u672f\u652f\u6301", "PROJECT_NAME_FULL": "\u91d1\u9675\u77f3\u5316\u4e09\u57fa\u7ba1\u7406\u5e73\u53f0" }
