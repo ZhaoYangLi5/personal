@@ -8,12 +8,8 @@ require.config({
             'http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min',
             '../../node_modules/jquery-weui/dist/js/jquery-weui.min'
         ],
-        'fastclick': [
-            '../../node_modules/jquery-weui/dist/lib/fastclick'
-        ],
         'datepicker': ['./datapick'],
-        'template': ['../script/template'],
-        'cookie': ['./cookie']
+        'template': ['../script/template']
     },
     shim: {
         'jquery-weui': {
@@ -28,8 +24,6 @@ function skip(href) {
     window.open('../modifydaily.html?taskexem_id=' + href, "_self");
 };
 require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function($, weui, template) {
-
-
     // ajax后台获取数据，并用前端模板进行拼接显示
     // data变化 org变化  uid变化  daytype变化  
     function getContent(date, org, daytype, uid, type) {
@@ -42,7 +36,6 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
-                console.log(data.selectorg);
                 artTemp(personcontent, 'personContent', data);
                 if (type == "0") {
                     artTemp(allorg, 'org', data);
@@ -136,29 +129,6 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             $(this).html($(this).html() + '...');
         }
     });
-    // 检测cookie的值
-    // function checkCookie(cname) {
-    //     var cvalue = getCookie(cname);
-    //     switch (cvalue) {
-    //         case 0:
-    //             return 0;
-    //         case 1:
-    //             return 1;
-    //         case 2:
-    //             return 2;
-    //     }
-    // }
-    // 获取cookie 的值
-    // function getCookie(cname) {
-    //     var name = cname + "=";
-    //     var ca = document.cookie.split(';');
-    //     for (var i = 0; i < ca.length; i++) {
-    //         var c = ca[i].trim();
-    //         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    //     }
-    //     return "";
-    // }
-
     // sessionstorage存储
     function setStorage(sdata) {
         var aList = JSON.stringify(sdata); //把json数据转为string字符串

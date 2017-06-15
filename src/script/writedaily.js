@@ -33,7 +33,6 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
         jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
         success: function(data) {
             getJobClass(data.DAYREPORTTYPE);
-            // getJson(data);
             getProject(data);
         },
         error: function() {
@@ -129,10 +128,13 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
         } else if ((data.TASKM_TYPE == 2)) {
             $("input:radio[value='2']").attr('checked', 'true');
             addOption(jobclass2);
-        } else {
+        } else if ((data.TASKM_TYPE == 3)) {
             $("input:radio[value='3']").attr('checked', 'true');
             addOption(jobclass3);
+        } else {
+            addOption(jobclass1);
         }
+
     }
 
     // slider的初始化与转化
@@ -146,24 +148,21 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
     var project = $("#project");
     var jobContent = $("#jobContent").find("textarea");
     var jobResults = $("#jobResults").find("textarea");
+    var org_id = JSON.parse(sessionStorage.getItem('aUser')).ORG_ID;
+    var taskm_acceptor = JSON.parse(sessionStorage.getItem('aUser')).USER_ID;
 
     // 数据的填入
     function getJson(data) {
-        var name = data.U_NAME_FULL + "-" + data.ORG_NAME_FULL + "-" + data.RYLB;
-        title.html(name);
-        jobType.val(data.TASKTYPE_ID);
-        var date = new Date(data.TASKEXEM_SUBMITDATE).pattern("yyyy-MM-dd EE")
-        sdate.text(date);
-        project.val(data.PROJECT_NAME_FULL).data('num', data.PROJECT_ID);
-        $("#sliderValue").html(data.TASKEXEM_HOUR);
-        $("#sliderTrack").width((data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
-        $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
-        jobContent.html(data.TASKEXEM_CONTENT.replace(/<[^>]+>/g, ""));
-        if (data.TASKM_CG) {
-            var content = data.TASKM_CG.replace(/<[^>]+>/g, "");
-            jobResults.html(content);
+        var name = "";
+        if (data.RYLB) {
+            name = data.U_NAME_FULL + "-" + data.org + "-" + data.RYLB;
+        } else {
+            name = data.U_NAME_FULL + "-" + data.org;
         }
+        title.html(name);
     }
+
+    getJson(JSON.parse(sessionStorage.getItem('aUser')));
 
     function postJson() {
         $.ajax({
@@ -171,7 +170,7 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
             async: false,
             url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/personaladd",
             dataType: "jsonp",
-            data: '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val() + '&taskm_cg=' + jobResults.val(),
+            data: 'org_id=' + org_id + '&taskm_acceptor=' + taskm_acceptor + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val() + '&taskm_cg=' + jobResults.val(),
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
@@ -183,7 +182,6 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
         });
     }
     $("#save").on('click', function() {
-        console.log('taskexem_id=' + href[1] + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val());
         postJson();
     })
 
