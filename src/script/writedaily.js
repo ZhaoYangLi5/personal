@@ -12,8 +12,6 @@ require.config({
             '../../node_modules/jquery-weui/dist/lib/fastclick'
         ],
         'datepicker': ['./datapick'],
-        'template': ['../script/template'],
-        'cookie': ['./cookie']
     },
     shim: {
         'jquery-weui': {
@@ -22,131 +20,171 @@ require.config({
     }
 
 });
-require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function() {
-    var oTxt = document.getElementById('project');
-    var oList = document.getElementById('list');
-
-    var fruits = ["桃子", "苹果", "梨子", "香蕉", "香瓜", "葡萄", "柠檬", "橘子", "草莓", "桃子桃子桃子桃子桃子", "桃子桃子", "桃子桃子桃子"];
-    //点击事件
-    // oBtn.addEventListener('click', function() {
-    //     var keyWord = oTxt.value;
-    //     // var fruitList = searchByIndexOf(keyWord,fruits);
-    //     console.log(fruitList);
-    //     var fruitList = searchByRegExp(keyWord, fruits);
-    //     renderFruits(fruitList);
-    // }, false);
-    //回车查询
-    oTxt.addEventListener('keydown', function(e) {
-        if (e.keyCode == 13) {
-            var keyWord = oTxt.value;
-            // var fruitList = searchByIndexOf(keyWord,fruits);
-            var fruitList = searchByRegExp(keyWord, fruits);
-            renderFruits(fruitList);
-        }
-    }, false);
-    oTxt.addEventListener('keyup', function(e) {
-        var keyWord = oTxt.value;
-        // var fruitList = searchByIndexOf(keyWord,fruits);
-        var fruitList = searchByRegExp(keyWord, fruits);
-        renderFruits(fruitList);
-        document.getElementById('list').style.display = "block"
-    }, false);
-    oTxt.addEventListener('blur', function(e) {
-        document.getElementById('list').style.display = "none"
-    })
-
-    function renderFruits(list) {
-        if (!(list instanceof Array)) {
-            return;
-        }
-        oList.innerHTML = '';
-        var len = list.length;
-        var item = null;
-        for (var i = 0; i < len; i++) {
-            item = document.createElement('li');
-            item.innerHTML = list[i];
-            oList.appendChild(item);
-        }
-    }
-
-    //模糊查询1:利用字符串的indexOf方法
-    function searchByIndexOf(keyWord, list) {
-        if (!(list instanceof Array)) {
-            return;
-        }
-        var len = list.length;
-        var arr = [];
-        for (var i = 0; i < len; i++) {
-            //如果字符串中不包含目标字符会返回-1
-            if (list[i].indexOf(keyWord) >= 0) {
-                arr.push(list[i]);
-            }
-        }
-        return arr;
-    }
-    //正则匹配
-    function searchByRegExp(keyWord, list) {
-        if (!(list instanceof Array)) {
-            return;
-        }
-        var len = list.length;
-        var arr = [];
-        var reg = new RegExp(keyWord);
-        for (var i = 0; i < len; i++) {
-            //如果字符串中不包含目标字符会返回-1
-            if (list[i].match(reg)) {
-                arr.push(list[i]);
-            }
-        }
-        return arr;
-    }
-    renderFruits(fruits);
-
-    // 搜索栏的定位
-    $('.project ul').css({
-        top: $('.project input').position().top + $('.project input').height() + 4,
-        left: $('.project input').offset().left
-    })
-
-    // 工作分类的切换
-    var jobclass1 = ["需求对接", "需求分析", "规划评审", "产品设计", "设计评审", "界面交互设计", "数据验证", "详细用例", "交互设计评审", "项目会议", "技术支持", "工作汇报", "用户培训", "系统测试", "数据准备", "上线准备", "验收准备"];
-    var jobclass2 = ["部门间工作协调", "应急工作", "内部会议", "日常管理", "项目跟踪检查", "部门内部工作协调", "项目评审及讨论", "工作汇报", "公司会议", "培训"]
-    $(".weui-check").on("click", function() {
-        var jobCls = $('.weui-check:checked').val();
-        if ($('.weui-check:checked').val() == "1") {
-            $("#jobType").find("select option").remove();
-            addOption(jobclass1);
-        } else {
-            $("#jobType").find("select option").remove();
-            addOption(jobclass2);
+require(['jquery', 'jquery-weui', 'datepicker'], function() {
+    // ajax的数据交互
+    var href = location.search.split('=');
+    $.ajax({
+        type: "GET",
+        async: false,
+        url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenaloa",
+        dataType: "jsonp",
+        data: href[0].substring(1) + "=" + href[1],
+        jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+        jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+        success: function(data) {
+            getJobClass(data.DAYREPORTTYPE);
+            // getJson(data);
+            getProject(data);
+        },
+        error: function() {
+            alert("fail");
         }
     });
 
-    function addOption(jobCls) {
-        $.each(jobCls, function(i, item) {
-            var opt = $("<option></option>").html(item);
-            $("#jobType").find("select").append(opt);
-        })
-    }
-    addOption(jobclass1);
+    // 所属项目
+    function getProject(data) {
+        var oTxt = $('#project');
+        var oList = $('#list');
+        var fruits = data.ALL_PROJECT;
 
-    $('#slider1').slider(function(percent) {
+        $("#project").on('keyup', function() {
+                var keyWord = $(this).val();
+                var fruitList = searchByRegExp(keyWord, fruits);
+                renderFruits(fruitList);
+                $("#list").css('display', "block");
+            })
+            // 搜索栏的定位
+        $('.project ul').css({
+            top: $('.project input').position().top + $('.project input').height() + 2,
+            left: $('.project input').offset().left
+        })
+
+        function renderFruits(list) {
+            if (!(list instanceof Array)) {
+                return;
+            }
+            oList.html('');
+            var len = list.length;
+            var item = null;
+            for (var i = 0; i < len; i++) {
+                item = document.createElement('li');
+                item.innerHTML = list[i].PROJECT_NAME_FULL;
+                item.dataset.num = list[i].PROJECT_ID;
+                oList.append(item);
+            }
+        }
+        //正则匹配
+        function searchByRegExp(keyWord, list) {
+            if (!(list instanceof Array)) {
+                return;
+            }
+            var len = list.length;
+            var arr = [];
+            var reg = new RegExp(keyWord);
+            for (var i = 0; i < len; i++) {
+                //如果字符串中不包含目标字符会返回-1
+                if (list[i].PROJECT_NAME_FULL.match(reg)) {
+                    arr.push(list[i]);
+                }
+            }
+            return arr;
+        };
+        // renderFruits(fruits);
+        $("#list").on('click', 'li', function() {
+            $("#project").val($(this).html());
+            $("#project").data('num', $(this).data('num'));
+            $("#list").hide();
+        })
+
+    }
+    // 工作类型
+    function getJobClass(data) {
+        var jobclass1 = data[1];
+        var jobclass2 = data[2];
+        var jobclass3 = data[3];
+
+        function addOption(jobCls) {
+            $.each(jobCls, function(i, item) {
+                var opt = $("<option></option>").html(item.U_NAME).val(item.DAYREPORT_TYPE);
+                $("#jobType").find("select").append(opt);
+            })
+        }
+        // 工作分类的切换
+        $(".weui-check").on("click", function() {
+            if ($('.weui-check:checked').val() == "1") {
+                $("#jobType").find("select option").remove();
+                addOption(jobclass1);
+            } else if ($('.weui-check:checked').val() == "2") {
+                $("#jobType").find("select option").remove();
+                addOption(jobclass2);
+            } else if ($('.weui-check:checked').val() == "3") {
+                $("#jobType").find("select option").remove();
+                addOption(jobclass3);
+            }
+        });
+        // 工作分类初始化
+        if (data.TASKM_TYPE == 1) {
+            $("input:radio[value='1']").attr('checked', 'true');
+            addOption(jobclass1);
+        } else if ((data.TASKM_TYPE == 2)) {
+            $("input:radio[value='2']").attr('checked', 'true');
+            addOption(jobclass2);
+        } else {
+            $("input:radio[value='3']").attr('checked', 'true');
+            addOption(jobclass3);
+        }
+    }
+
+    // slider的初始化与转化
+    $('#jobTime').slider(function(percent) {
         $("#sliderValue").text((percent / 100 * 15).toFixed(1));
     });
+
+    var title = $("#title");
+    var jobType = $("#jobType").find("select");
+    var sdate = $(".ui-datepicker-curr-month");
+    var project = $("#project");
+    var jobContent = $("#jobContent").find("textarea");
+    var jobResults = $("#jobResults").find("textarea");
+
+    // 数据的填入
+    function getJson(data) {
+        var name = data.U_NAME_FULL + "-" + data.ORG_NAME_FULL + "-" + data.RYLB;
+        title.html(name);
+        jobType.val(data.TASKTYPE_ID);
+        var date = new Date(data.TASKEXEM_SUBMITDATE).pattern("yyyy-MM-dd EE")
+        sdate.text(date);
+        project.val(data.PROJECT_NAME_FULL).data('num', data.PROJECT_ID);
+        $("#sliderValue").html(data.TASKEXEM_HOUR);
+        $("#sliderTrack").width((data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
+        $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
+        jobContent.html(data.TASKEXEM_CONTENT.replace(/<[^>]+>/g, ""));
+        if (data.TASKM_CG) {
+            var content = data.TASKM_CG.replace(/<[^>]+>/g, "");
+            jobResults.html(content);
+        }
+    }
+
+    function postJson() {
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/personaladd",
+            dataType: "jsonp",
+            data: '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val() + '&taskm_cg=' + jobResults.val(),
+            jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            success: function(data) {
+                $.toptip('操作成功', 'success');
+            },
+            error: function() {
+                alert("fail");
+            }
+        });
+    }
+    $("#save").on('click', function() {
+        console.log('taskexem_id=' + href[1] + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val());
+        postJson();
+    })
+
 })
-
-
-
-// $.ajax({
-//     url: 'http://192.168.98.23/salienoa/index.php/home/api/persenaloa',
-//     type: "get",
-//     /*url写异域的请求地址*/
-//     dataType: "jsonp",
-//     data: { taskexem_id: 53555 },
-//     /*加上datatype*/
-//     callback: "flightHandler",
-//     /*设置一个回调函数，名字随便取，和下面的函数里的名字相同就行*/
-//     success: function(msg) {
-//         console.log(msg);
-//     }
-// })

@@ -3,22 +3,26 @@ require.config({
         'jquery': [
             'http://cdn.bootcss.com/jquery/1.11.0/jquery.min',
             '../../node_modules/jquery-weui/dist/lib/jquery-2.1.4'
-        ],
-        'jquery-weui': [
-            'http://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min',
-            '../../node_modules/jquery-weui/dist/js/jquery-weui.min'
-        ],
-        'fastclick': [
-            '../../node_modules/jquery-weui/dist/lib/fastclick'
         ]
     },
-    shim: {
-        'jquery-weui': {
-            deps: ['jquery']
-        }
-    }
-
 });
-require(['jquery-weui'], function() {
-
+require(['jquery'], function() {
+    $("#login").on('click', function() {
+        var $uid = $("#uid").val();
+        var $pword = $("#pword").val();
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "http://192.168.98.23/salienoa/index.php/home/api/login",
+            dataType: "jsonp",
+            data: 'uid=' + $uid + '&pword=' + $pword,
+            // jsonpCallback: "flightHandler",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function() {
+                alert("fail");
+            }
+        })
+    })
 });

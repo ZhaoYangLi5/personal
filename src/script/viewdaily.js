@@ -38,45 +38,67 @@
 
  var viewcontent = '<div class="weui-cells">' +
      '<div class="weui-cell">' +
-     '  <div class="weui-cell__hd">' +
-     '        <i class="icon-project"></i>' +
-     '    </div>' +
-     '    <div class="weui-cell__bd">' +
-     '        <h2>{{data.PROJECT_NAME_FULL}}</h2>' +
-     '    </div>' +
-     '</div>' +
-     '<div class="weui-cell">' +
      '<div class="weui-cell__hd">' +
-     '<i class="icon-content"></i>' +
-     '</div>' +
-     '<div class="weui-cell__bd ">' +
-     '<p>工作内容：<span>{{data.TASKEXEM_CONTENT |  formatContent:data.TASKEXEM_CONTENT}}</span></p>' +
-     '</div>' +
-     '</div>' +
-     '<div class="weui-cell">' +
-     '<div class="weui-cell__hd">' +
-     '<i class="icon-achievement"></i>' +
-     '</div>' +
+     '<span class="icon-work_content"></span> </div>' +
      '<div class="weui-cell__bd">' +
-     '<p>工作结果：<span>{{data.TASKM_CG}}</span></p>' +
+     '<p>工作内容</p>' +
      '</div>' +
+     '<div class="weui-cell__ft"><textarea class="weui-textarea" rows="4" readonly>{{data.TASKEXEM_CONTENT |  formatContent:data.TASKEXEM_CONTENT}}</textarea></div>' +
+     '</div>' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd">' +
+     '<span class="icon-work_result"></span> </div>' +
+     '<div class="weui-cell__bd">' +
+     '<p>工作结果</p>' +
+     '</div>' +
+     '<div class="weui-cell__ft"><textarea class="weui-textarea" rows="4" readonly>{{data.TASKM_CG}}</textarea></div>' +
      '</div>' +
      '</div>'
- var viewbody = '<div class="weui-flex ">' +
-     '<div class="weui-flex__item">' +
-     '<h3>{{data.TASKM_TYPE | formatclass: data.TASKM_TYPE}}</h3>' +
+ var viewbody = '<div class="weui-cells">' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd">' +
+     '<span class="icon-time"></span> </div>' +
+     '<div class="weui-cell__bd">' +
+     '<p>日期</p>' +
+     '</div>' +
+     '<div class="weui-cell__ft">{{data.TASKEXEM_SUBMITDATE}}</div>' +
+     '</div>' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd"><span class="icon-work_class"></span></div>' +
+     '<div class="weui-cell__bd">' +
      '<p>工作分类</p>' +
      '</div>' +
-     '<div class="weui-flex__item">' +
-     '<h3>{{data.DAYREPORT_TYPE }}</h3>' +
+     '<div class="weui-cell__ft">{{data.TASKM_TYPE | formatclass: data.TASKM_TYPE}}</div>' +
+     '</div>' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd">' +
+     '<span class="icon-work_type"></span> </div>' +
+     '<div class="weui-cell__bd">' +
      '<p>工作类型</p>' +
      '</div>' +
-     '<div class="weui-flex__item">' +
-     '<h3>{{data.TASKEXEM_HOUR}}</h3>' +
+     '<div class="weui-cell__ft">{{data.DAYREPORT_TYPE }}</div>' +
+     '</div>' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd">' +
+     '<span class="icon-work_project"></span> </div>' +
+     '<div class="weui-cell__bd">' +
+     '<p>所属项目</p>' +
+     '</div>' +
+     '<div class="weui-cell__ft">{{data.PROJECT_NAME_FULL}}</div>' +
+     '</div>' +
+     '<div class="weui-cell">' +
+     '<div class="weui-cell__hd">' +
+     '<span class="icon-work_time"></span> </div>' +
+     '<div class="weui-cell__bd">' +
      '<p>工时</p>' +
+     '</div>' +
+     '<div class="weui-cell__ft">{{data.TASKEXEM_HOUR}}</div>' +
      '</div>' +
      '</div>'
 
- var viewtitle = '<div class="weui-flex__item name">' +
-     '<h3>{{data.U_NAME_FULL}}{{data.ORG_NAME_FULL}}-{{data.RYLB}}-{{data.TASKEXEM_SUBMITDATE}}</h3>'
- '</div>'
+ var viewtitle = '<div class="weui-cell">' +
+     '<div class="weui-cell__hd"><span class="icon-see_title"></span>   </div>' +
+     '<div class="weui-cell__ft">' +
+     '  {{data.U_NAME_FULL}}-{{data.ORG_NAME_FULL}}-{{data.RYLB}}' +
+     '</div>' +
+     '</div>'

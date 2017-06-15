@@ -20,15 +20,17 @@
         <form action="#">
             <div class="user-name common-div">
                 <span class=" common-icon icon-login_user"></span>
-                <input type="text" name="username" value="" placeholder="用户名" />
+                <input type="text" name="username" value="" placeholder="用户名" id="uid" />
             </div>
             <div class="user-pasw common-div">
                 <span class=" common-icon icon-login_lock"></span>
-                <input type="password" name="password" value="" placeholder="密码" />
+                <input type="password" name="password" value="" placeholder="密码" id="pword" />
             </div>
-            <div class="login-btn">登录</div>
+            <div class="login-btn" id="login">登录</div>
         </form>
     </div>
+
+    <script src="./script/require.js" data-main="./script/main"></script>
 </body>
 
 </html>

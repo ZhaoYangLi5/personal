@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
     <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
     <link rel="stylesheet" href="styles/writedaily.css">
+    <link rel="stylesheet" href="styles/datepicker.css">
     <link rel="stylesheet" href="styles/fonts.css">
     <style>
         .weui-cells_radio .weui-icon-checked::before {
@@ -29,7 +30,7 @@
             width: 210px;
             font-size: 16px;
             color: #666;
-            /*box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .8)*/
+            /*box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .8);*/
         }
         
         #ui-datepicker-wrapper .ui-datepicker-header {
@@ -39,38 +40,29 @@
             text-align: center;
             /*background: #f0f0f0;*/
             /*border-bottom: 1px solid #ccc;*/
-            font-weight: bold;
+            /*font-weight: bold;*/
         }
         
-        .ui-datepicker-btn {
-            font-family: serif;
-            font-size: 20px;
-            width: 30px;
-            height: 50px;
-            line-height: 50px;
-            color: #1abc9c;
-            text-align: center;
-            cursor: pointer;
-            text-decoration: none;
+        #ui-datepicker-wrapper .ui-datepicker-header .ui-datepicker-btn {
+            color: #999;
         }
-        
-        .ui-datepicker-prev-btn {
+        /*.ui-datepicker-prev-btn {
             float: left;
         }
-        
-        .ui-datepicker-next-btn {
+        */
+        /*.ui-datepicker-next-btn {
             float: right;
-        }
+        }*/
     </style>
 </head>
 
 <body>
     <header>
-        <h2 style="text-align:center;margin-bottom:-20px;font-size:18px;line-height:36px;height:36px;" id="title"></h2>
+        <h2 id="title"></h2>
     </header>
     <div class="weui-cells">
         <div class="weui-cell" id="jobClassification">
-            <div class="weui-cell__hd"><i class="icon-classify"></i></div>
+            <div class="weui-cell__hd"><i class="icon-work_class"></i></div>
             <div class="weui-cell__bd">
                 <p>工作分类</p>
             </div>
@@ -78,18 +70,23 @@
                 <label class="weui-flex__item weui-check__label" for="x11">
                 <input type="radio" name="radio1" class="weui-check" id="x11" value="1"  checked="checked">
                 <span class="weui-icon-checked"></span>
-                <span>项目</span>
+                <span>实施</span>
             </label>
                 <label class="weui-flex__item weui-check__label" for="x12">
                 <input type="radio" name="radio1" class="weui-check" id="x12" value="2"  >
                 <span class="weui-icon-checked"></span>
                <span>管理</span>
             </label>
+                <label class="weui-flex__item weui-check__label" for="x13">
+                <input type="radio" name="radio1" class="weui-check" id="x13" value="3"  >
+                <span class="weui-icon-checked"></span>
+               <span>开发</span>
+            </label>
             </div>
         </div>
 
         <div class="weui-cell weui-cell_select weui-cell_select-after" id="jobType">
-            <div class="weui-cell__hd"><i class="icon-job"></i></div>
+            <div class="weui-cell__hd"><i class="icon-work_type"></i></div>
             <div class="weui-cell__bd">
                 <p>工作类型</p>
             </div>
@@ -99,7 +96,7 @@
             </div>
         </div>
 
-        <div class="weui-cell" id="jobDate">
+        <div class="weui-cell job-date" id="jobDate">
             <div class="weui-cell__hd"><i class="icon-time"></i></div>
             <div class="weui-cell__bd">
                 <p>时间</p>
@@ -108,19 +105,19 @@
         </div>
 
         <div class="weui-cell project" id="jobProject">
-            <div class="weui-cell__hd"><i class="icon-project"></i></div>
+            <div class="weui-cell__hd"><i class="icon-work_project"></i></div>
             <div class="weui-cell__bd">
                 <p>所属项目</p>
             </div>
-            <input type="text" value="" id="project">
+            <span class="icon-work_project_search"></span><input type="text" value="" id="project" placeholder="请输入关键字查询选择">
             <ul id="list">
 
             </ul>
         </div>
 
 
-        <div class="weui-cell" id="jobTime">
-            <div class="weui-cell__hd"><i class="icon-system"></i></div>
+        <div class="weui-cell job-time" id="jobTime">
+            <div class="weui-cell__hd"><i class="icon-work_time"></i></div>
             <div class="weui-cell__bd">
                 <p>工时</p>
             </div>
@@ -137,26 +134,31 @@
         </div>
 
 
-        <div class="weui-cells__title"><i class="weui-icon-success weui-icon_msg"></i> 工作内容</div>
+        <div class="weui-cells__title"><i class="icon-work_content"></i> 工作内容</div>
         <div class="weui-cells weui-cells_form" id="jobContent">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+                    <textarea class="weui-textarea" placeholder="请输入文本" rows="4"></textarea>
 
                 </div>
             </div>
         </div>
 
-        <div class="weui-cells__title"><i class="weui-icon-success weui-icon_msg"></i> 工作结果</div>
+        <div class="weui-cells__title"><i class="icon-work_result"></i> 工作结果</div>
         <div class="weui-cells weui-cells_form" id="jobResults">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+                    <textarea class="weui-textarea" placeholder="请输入文本" rows="4"></textarea>
 
                 </div>
             </div>
         </div>
     </div>
+    <footer>
+        <button type="button" class="save" id="save">
+            保存
+        </button>
+    </footer>
 
 
     <script src="script/datapick.js"></script>
