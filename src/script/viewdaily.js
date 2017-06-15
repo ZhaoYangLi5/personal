@@ -78,5 +78,5 @@
      '</div>'
 
  var viewtitle = '<div class="weui-flex__item name">' +
-     '<h3>{{data.U_NAME_FULL}} <br>{{data.ORG_NAME_FULL}}-{{data.RYLB}}</h3>' +
-     '</div>'
+     '<h3>{{data.U_NAME_FULL}}{{data.ORG_NAME_FULL}}-{{data.RYLB}}-{{data.TASKEXEM_SUBMITDATE}}</h3>'
+ '</div>'

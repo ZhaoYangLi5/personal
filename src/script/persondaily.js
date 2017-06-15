@@ -42,7 +42,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
-                console.log(type);
+                console.log(data.selectorg);
                 artTemp(personcontent, 'personContent', data);
                 if (type == "0") {
                     artTemp(allorg, 'org', data);
@@ -69,11 +69,17 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
     template.helper('formatContent', function(str, new_str) {
         return str.replace(/<[^>]+>/g, "");
     });
+    template.helper('formatYear', function(str, new_str) {
+        return str.substring(0, 4);
+    });
+    template.helper('formatMonth', function(str, new_str) {
+        return str.substring(5);
+    });
 
     var personcontent = '{{each data.data as value i}}' +
         '<a href="viewdaily.html?taskexem_id={{value.TASKEXEM_ID}}" class="weui-media-box weui-media-box_appmsg">' +
         '<div class="weui-media-box__hd">' +
-        '<p> {{value.TASKEXEM_DATE}}</p>' +
+        '<p> {{value.TASKEXEM_DATE | formatYear:value.TASKEXEM_DATE}}</p>' + '<p> {{value.TASKEXEM_DATE | formatMonth:value.TASKEXEM_DATE}}</p>' +
         '</div>' +
         '<div class="weui-media-box__bd">' +
         '<h4 class="weui-media-box__title">{{value.U_NAME_FULL}}-{{value.ORG_NAME_FULL}}-{{value.RYLB}}</h4>' +
@@ -124,7 +130,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
 
     // 限制字符个数
     $(".weui-media-box__desc").each(function() {
-        var maxwidth = 40;
+        var maxwidth = 10;
         if ($(this).html().length > maxwidth) {
             $(this).html($(this).html().substring(0, maxwidth));
             $(this).html($(this).html() + '...');

@@ -8,11 +8,27 @@
     <!-- 关闭电话号码识别： -->
     <meta name="format-detection" content="telephone=no" />
     <meta name="format-detection" content="email=no" />
+    <script src="script/flexible.js"></script>
     <title>登录</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" type="" href="./styles/index.css">
 </head>
 
 <body>
-
+    <div class="container">
+        <form action="#">
+            <div class="user-name common-div">
+                <span class=" common-icon icon-login_user"></span>
+                <input type="text" name="username" value="" placeholder="用户名" />
+            </div>
+            <div class="user-pasw common-div">
+                <span class=" common-icon icon-login_lock"></span>
+                <input type="password" name="password" value="" placeholder="密码" />
+            </div>
+            <div class="login-btn">登录</div>
+        </form>
+    </div>
 </body>
 
 </html>
