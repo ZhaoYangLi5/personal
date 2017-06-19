@@ -14,6 +14,7 @@ require(['jquery'], function() {
     $("#login").on('click', function() {
         var $uid = $("#uid").val();
         var $pword = $("#pword").val();
+        var winRef = window.open("", "_self");//打开一个新的页面
         $.ajax({
             type: "GET",
             async: false,
@@ -26,7 +27,10 @@ require(['jquery'], function() {
                     return false;
                 }
                 setStorage(data);
-                window.open('././oa.html', '_self');
+                function loc(){
+                winRef.location='././oa.html';
+            }
+            setTimeout(loc(),800);
             },
             error: function() {
                 alert("fail");
@@ -37,6 +41,9 @@ require(['jquery'], function() {
         sessionStorage.removeItem('aUser');
         sessionStorage.aList?sessionStorage.removeItem('aList'): true
         sessionStorage.aList?sessionStorage.removeItem('aParam'): true
-        window.open('././index.html', '_self');
+        var winRef1 = window.open("", "_self");//打开一个新的页面
+        setTimeout(function() {
+                    winRef1.location = '././index.html'
+                }(), 800)
     })
 });

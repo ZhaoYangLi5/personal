@@ -54,12 +54,18 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         var oTxt = $('#project');
         var oList = $('#list');
         var fruits = data.ALL_PROJECT;
-
-        $("#project").on('keyup', function() {
+        $("#project").on({
+            'keyup': function() {
                 var keyWord = $(this).val();
                 var fruitList = searchByRegExp(keyWord, fruits);
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
                 renderFruits(fruitList);
                 $("#list").css('display', "block");
+            },'focus':function(){
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
+            },'blur':function(){  
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
+            }
             })
             // 搜索栏的定位
         $('.project ul').css({
@@ -99,12 +105,15 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         };
         // renderFruits(fruits);
         $("#list").on('click', 'li', function() {
+            $("#project").parent().find('span').removeClass();
             $("#project").val($(this).html());
             $("#project").data('num', $(this).data('num'));
             $("#list").hide();
-        })
-
+        });
     };
+    $("body").on('click',function(){
+        $("#list").hide();
+    })
     // 工作类型
     function getJobClass(data) {
         var jobclass1 = data[1];

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        pg.find('[name=gotoAccountSet]').unbind('click').click(function(){
+   var sel = pg.find('select option:selected');
+   var id = sel.attr("id");
+   var name = sel.html(); 
+   var winRef = window.open("", "_blank");//打开一个新的页面
+   App.post('accountSet/getServerName.do',{id:id},function(data){
+    var ro = mac.eval(data);
+    if(ro.success){
+     function loc(){
+      var ll = 'http://'+ro.data.info+'.teenydata.com/'+name+'/index.jsp';
+      winRef.location = ll;//改变页面的 location
+     }
+     setTimeout(loc(),800);//这个等待很重要，如果不等待的话将无法实现
+    }
+   })
+  })
+    </script>
+    
+</body>
+</html>
