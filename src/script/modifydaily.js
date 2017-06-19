@@ -24,7 +24,13 @@ require.config({
 });
 require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function() {
     // ajax的数据交互
-    var href = location.search.split('=')
+    var href = location.search.split('=');
+    var title = $("#title");
+    var jobType = $("#jobType").find("select");
+    var sdate = $(".ui-datepicker-curr-month");
+    var project = $("#project");
+    var jobContent = $("#jobContent").find("textarea");
+    var jobResults = $("#jobResults").find("textarea");
     $.ajax({
         type: "GET",
         async: false,
@@ -98,7 +104,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
             $("#list").hide();
         })
 
-    }
+    };
     // 工作类型
     function getJobClass(data) {
         var jobclass1 = data[1];
@@ -135,20 +141,11 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
             $("input:radio[value='3']").attr('checked', 'true');
             addOption(jobclass3);
         }
-    }
-
+    };
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
         $("#sliderValue").text((percent / 100 * 15).toFixed(1));
     });
-
-    var title = $("#title");
-    var jobType = $("#jobType").find("select");
-    var sdate = $(".ui-datepicker-curr-month");
-    var project = $("#project");
-    var jobContent = $("#jobContent").find("textarea");
-    var jobResults = $("#jobResults").find("textarea");
-
     // 数据的填入
     function getJson(data) {
         var name = data.U_NAME_FULL + "-" + data.ORG_NAME_FULL + "-" + data.RYLB;
@@ -165,7 +162,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
             var content = data.TASKM_CG.replace(/<[^>]+>/g, "");
             jobResults.html(content);
         }
-    }
+    };
 
     function postJson() {
         $.ajax({
@@ -185,7 +182,6 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         });
     }
     $("#save").on('click', function() {
-        console.log('taskexem_id=' + href[1] + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val());
         postJson();
     })
 
