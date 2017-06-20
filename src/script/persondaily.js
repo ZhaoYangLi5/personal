@@ -216,8 +216,10 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             } else if (aUser.authority == "1") {
                 $("#headerTitle h1").html("经理日报");
                 $("#headerIcon").addClass("icon-Manager-daily");
+                $("#uid").parent().show();
             } else if (aUser.authority == "2") {
                 $("#headerTitle h1").html("高管日报");
+                $("#org").parent().show();
                 $("#headerIcon").addClass("icon-Executives-daily");
             }
         }
