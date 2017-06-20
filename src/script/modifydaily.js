@@ -111,7 +111,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
             $("#list").hide();
         });
     };
-    $("body").on('click',function(){
+    $(".weui-cells").on('click',function(){
         $("#list").hide();
     })
     // 工作类型

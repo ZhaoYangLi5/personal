@@ -18,7 +18,7 @@
  require(['jquery', 'jquery-weui', 'template'], function($, weui, template) {
      var href = location.search.split('=');
      template.helper('formatContent', function(str, new_str) {
-         str = str||str.replace(/<[^>]+>/g, "");
+         if(str){str=str.replace(/<[^>]+>/g, "")}
          return str
      });
      template.helper('formatclass', function(str, new_str) {

@@ -32,17 +32,20 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             $("#org").val(org_id);
             $("#uid").val(uid);
             $("#headerTitle h1").html("员工日报");
+            getContent($(".ui-datepicker-curr-month").text().slice(0, 10), $("#org").val(), $("#dayType").val(), $("#uid").val(), 4);
         } else if (authority == "1") {
             $("#org").val(org_id);
             $("#uid").parent().show();
             $("#headerTitle h1").html("经理日报");
             $("#headerIcon").addClass("icon-Manager-daily");
+            getContent($(".ui-datepicker-curr-month").text().slice(0, 10), $("#org").val(), $("#dayType").val(), $("#uid").val(), 1);
         } else if (authority == "2") {
             $("#uid").parent().show();
             $("#org").parent().show();
             $("#headerTitle h1").html("高管日报");
+            getContent($(".ui-datepicker-curr-month").text().slice(0, 10), $("#org").val(), $("#dayType").val(), $("#uid").val(), 2);
         }
-        getContent($(".ui-datepicker-curr-month").text().slice(0, 10), $("#org").val(), $("#dayType").val(), $("#uid").val(), 4);
+        
     }
 
     // ajax后台获取数据，并用前端模板进行拼接显示
@@ -116,8 +119,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         '<span class="weui-ft" style="width:60px" data-href={{value.TASKEXEM_ID}}>' +
         '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem" onclick="skip({{value.TASKEXEM_ID}});"></i></span></p>'+
         '</div>' +
-        '</div>' +
-              
+        '</div>' +             
         '</a>' +
         '{{/each}}'
 
@@ -199,13 +201,10 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             artTemp(allorg, 'org', aList);
             // 滚动到对应位置，并清除sessionStorage
             document.body.scrollTop = aParam.top;
-            // conf.page = aParam.page;
             $('.ui-datepicker-curr-month').text(aParam.date);
             $('#dayType').val(aParam.daytype);
             $('#org').val(aParam.org);
             $('#uid').val(aParam.uid);
-            // sessionStorage.removeItem('aList');
-            // sessionStorage.removeItem('aParam');
         } else {
             getContent(date, org, daytype, uid, 3);
         }
@@ -220,6 +219,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             } else if (aUser.authority == "2") {
                 $("#headerTitle h1").html("高管日报");
                 $("#org").parent().show();
+                $("#uid").parent().show();
                 $("#headerIcon").addClass("icon-Executives-daily");
             }
         }
