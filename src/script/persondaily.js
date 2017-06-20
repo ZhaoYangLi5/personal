@@ -87,6 +87,10 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             data: data
         });
         document.getElementById(id).innerHTML = html;
+           $(".weui-media-box").each(function(){
+	var a = $(this).find('h4').html().indexOf(JSON.parse(sessionStorage.getItem('aUser')).U_NAME_FULL);
+	if(a!==0){$(this).find('i').remove()}
+})
     }
     template.helper('formatContent', function(str, new_str) {
         if (str) {
@@ -107,12 +111,13 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         '</div>' +
         '<div class="weui-media-box__bd">' +
         '<h4 class="weui-media-box__title">{{value.U_NAME_FULL}}-{{value.ORG_NAME_FULL}}-{{value.RYLB}}</h4>' +
-        '<p class="weui-media-box__desc"><span>工作内容：</span>{{value.TASKEXEM_CONTENT | formatContent:value.TASKEXEM_CONTENT}}</p>' +
+        '<div class="weui-media-box__desc">'+
+        '<p><span>工作内容：</span>{{value.TASKEXEM_CONTENT | formatContent:value.TASKEXEM_CONTENT}}'+
+        '<span class="weui-ft" style="width:60px" data-href={{value.TASKEXEM_ID}}>' +
+        '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem" onclick="skip({{value.TASKEXEM_ID}});"></i></span></p>'+
         '</div>' +
-        '<span class="weui-cell__ft" style="width:60px" data-href={{value.TASKEXEM_ID}}>' +
-        // '{{if value.U_NAME_FULL=="6492"}}' +
-        '<i class="icon-edit" style="text-align:center;display:inline-block;padding-top:5px;font-size:0.8533rem" onclick="skip({{value.TASKEXEM_ID}});"></i>' +
-        // '{{/if}}' +
+        '</div>' +
+              
         '</a>' +
         '{{/each}}'
 

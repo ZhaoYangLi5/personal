@@ -7,6 +7,53 @@
     <title>Document</title>
 </head>
 <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style>
+        html,
+body {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+.main {
+    margin-right:  200px;
+    height: 100%;
+    background-color: azure;
+}
+
+.right {
+    width: 200px;
+    height: 100%;
+    background-color: greenyellow;
+}
+
+.right {
+    float: right;
+}
+ 
+    </style>
+</head>
+<body>
+<body>        
+        <div class="right">
+            200px
+        </div>
+        <div class="main">
+            自适应
+        </div>
+</body>
+</body>
+</html>
+
     <script>
         pg.find('[name=gotoAccountSet]').unbind('click').click(function(){
    var sel = pg.find('select option:selected');

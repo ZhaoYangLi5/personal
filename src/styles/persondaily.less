@@ -104,10 +104,13 @@ nav{
     .weui-panel__bd{
         .weui-media-box{
             .weui-media-box__hd{
+                width:56px;
+                height: 54px;
                 background: url(../img/calendar.svg) no-repeat;
-                padding: 0.48rem 0.16rem 0;
-                background-size: contain;
-
+                padding-top:10px;
+                background-size: 56px 54px;
+                font-size:12px;
+                line-height: 16px;
                 p{
                     height: 0.5333rem;
                     line-height: 0.64rem;
@@ -116,12 +119,33 @@ nav{
                     text-align: center;   
                 }
             }
-            .weui-cell__ft{
-                width: 1.6rem;
-                height: 1.6rem;
-                // background: url('../img/edit.png') no-repeat;
-                background-size: contain;
+            .weui-media-box__bd{
+                margin-top: -8px;
+                .weui-media-box__title{
+                    font-size: 14px;
+                    height: 20px;
+                    line-height: 20px;
+                    margin-bottom: 6px;
+                }
+                .weui-media-box__desc{
+                // position: relative;
+                .weui-ft{
+                    position: absolute;
+                    right: 0;
+                    top:0;
+                    width:50px;
+                    height:50px; 
+                    margin-top: 34px;
+                }
+                p{
+                    margin-right:50px;
+                    font-size:12px;   
+                    line-height:16px;
+                    height:32px;
+                } 
             }
+            }
+            
         }
     }
 }

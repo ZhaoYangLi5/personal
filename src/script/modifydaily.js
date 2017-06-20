@@ -166,7 +166,9 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         $("#sliderValue").html(data.TASKEXEM_HOUR);
         $("#sliderTrack").width((data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
         $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
+        if(data.TASKEXEM_CONTENT){
         jobContent.html(data.TASKEXEM_CONTENT.replace(/<[^>]+>/g, ""));
+        }
         if (data.TASKM_CG) {
             var content = data.TASKM_CG.replace(/<[^>]+>/g, "");
             jobResults.html(content);
