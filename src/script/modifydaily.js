@@ -153,7 +153,6 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
         var time = Math.floor((percent / 100 * 12).toFixed(1)* 2)/ 2;
-        console.log(time);
         $("#sliderValue").text(time);
     });
     // 数据的填入
