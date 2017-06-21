@@ -153,7 +153,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
     };
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
-        $("#sliderValue").text((percent / 100 * 15).toFixed(1));
+        $("#sliderValue").text((percent / 100 * 12).toFixed(1));
     });
     // 数据的填入
     function getJson(data) {
@@ -164,8 +164,8 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
         sdate.text(date);
         project.val(data.PROJECT_NAME_FULL).data('num', data.PROJECT_ID);
         $("#sliderValue").html(data.TASKEXEM_HOUR);
-        $("#sliderTrack").width((data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
-        $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 15 * 100).toFixed(1) + "%");
+        $("#sliderTrack").width((data.TASKEXEM_HOUR / 12 * 100).toFixed(1) + "%");
+        $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 12 * 100).toFixed(1) + "%");
         if(data.TASKEXEM_CONTENT){
         jobContent.html(data.TASKEXEM_CONTENT.replace(/<[^>]+>/g, ""));
         }

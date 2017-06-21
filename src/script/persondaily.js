@@ -47,10 +47,24 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
         }
         
     }
+    function coverit() {
+        var cover = document.getElementById("cover");
+        var covershow = document.getElementById("coverShow");
+        cover.style.display = 'block';
+        covershow.style.display = 'block';
+    }
+
+    function hidden_coverit() {
+        var cover = document.getElementById("cover");
+        var covershow = document.getElementById("coverShow");
+        cover.style.display = 'none';
+        covershow.style.display = 'none';
+    }
 
     // ajax后台获取数据，并用前端模板进行拼接显示
     // data变化 org变化  uid变化  daytype变化  
     function getContent(date, org, daytype, uid, type) {
+        coverit();
         $.ajax({
             type: "GET",
             async: false,
@@ -60,6 +74,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker', 'cookie'], function(
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
+                hidden_coverit();
                 if (type == 2) {
                     artTemp(allorg, 'org', data);
                     artTemp(alluid, 'uid', data);

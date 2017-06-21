@@ -1,174 +1,190 @@
 @import url('reset.less');
-@import url('datepicker.less');     
-.container{
+@import url('datepicker.less');
+.container {
     width: 100%;
     height: 100%;
     background: #edf1f4;
-    header{
-    width: 100%;
-    height: 2.6667rem;
-    background-image:linear-gradient(-180deg, #5dd6f6 4%, #2fa7ff 100%);
-    .icon{
-        float: left;
-        // display: inline-block;
-        margin: 0.48rem 0.3733rem;
-        font-size: 1.6rem;
-    }
-    .icon-Employee-daily{
-        font-size: 1.28rem;
-    }
-    .header-title{
-        float: left;
-        width: 2.1333rem;
-        margin-top: 1.0133rem;
-        font-size: 16px;
-        font-weight: 400;
-        color: #fff;
-        h1{
-            font-weight: 400;
-        }
-    }
-    #ui-datepicker-wrapper{
-        float: right;
-        width: 5.2267rem;
-        margin-top:0.6933rem; 
-    }
-
-}
-nav{
-    width: 100%;
-    height: 1.3333rem;
-    font-size: 14px;
-    background: #fff;
-    a {
-    color: #000;
-    text-decoration: none;
-    line-height: 30px;
-    padding: 0 10px;
-    &:hover {
-        color: #C00;
-        }
-    } 
-    .nav-search{
+    header {
         width: 100%;
-        height: 50px;
-        line-height: 50px;
-        vertical-align: center;
-        font-size: 14px;
-        text-align: center;
-        // border:1px solid #ccc;
-        .weui-flex__item{
-            display: inline-block;
-            position: relative;
-            .up{
-                margin-left:10px;
-                display: inline-block;
-                vertical-align: text-bottom;
-                width: 0;
-                height: 0;
-                border:8px solid #000;
-                border-color: #000 transparent transparent;
-            }
-            .down{
-                margin-left:10px;
-                display: none;
-                vertical-align: baseline;
-                width: 0;
-                height: 0;
-                border:8px solid #000;
-                border-color:  transparent transparent #000;
-            }
-            .select-body{
-            display: none;
-            width:100%;
-            height: auto;
-            background: #FFF;
-            border: 1px solid #dfdfdf;
-            border-bottom: none;
-            clear: both;
-            position: absolute;
-            right: 0;
-            top: 50px;
-            z-index: 99;
-                li {
-                // height: 30px;
-                line-height: 30px;
-                border-bottom: 1px solid #dfdfdf;
-                }
+        height: 2.6667rem;
+        background-image: linear-gradient(-180deg, #5dd6f6 4%, #2fa7ff 100%);
+        .icon {
+            float: left; // display: inline-block;
+            margin: 0.48rem 0.3733rem;
+            font-size: 1.6rem;
+        }
+        .icon-Employee-daily {
+            font-size: 1.28rem;
+        }
+        .header-title {
+            float: left;
+            width: 2.1333rem;
+            margin-top: 1.0133rem;
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+            h1 {
+                font-weight: 400;
             }
         }
+        #ui-datepicker-wrapper {
+            float: right;
+            width: 5.2267rem;
+            margin-top: 0.6933rem;
+        }
     }
-}
-
-.weui-panel{
-    .weui-panel__bd{
-        .weui-media-box{
-            .weui-media-box__hd{
-                width:56px;
-                height: 54px;
-                background: url(../img/calendar.svg) no-repeat;
-                padding-top:10px;
-                background-size: 56px 54px;
-                font-size:12px;
-                line-height: 16px;
-                p{
-                    height: 0.5333rem;
-                    line-height: 0.64rem;
-                    font-size: 14px;
-                    vertical-align: middle;
-                    text-align: center;   
-                }
+    nav {
+        width: 100%;
+        height: 1.3333rem;
+        font-size: 14px;
+        background: #fff;
+        a {
+            color: #000;
+            text-decoration: none;
+            line-height: 30px;
+            padding: 0 10px;
+            &:hover {
+                color: #C00;
             }
-            .weui-media-box__bd{
-                margin-top: -8px;
-                .weui-media-box__title{
-                    font-size: 14px;
-                    height: 20px;
-                    line-height: 20px;
-                    margin-bottom: 6px;
+        }
+        .nav-search {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: center;
+            font-size: 14px;
+            text-align: center; // border:1px solid #ccc;
+            .weui-flex__item {
+                display: inline-block;
+                position: relative;
+                .up {
+                    margin-left: 10px;
+                    display: inline-block;
+                    vertical-align: text-bottom;
+                    width: 0;
+                    height: 0;
+                    border: 8px solid #000;
+                    border-color: #000 transparent transparent;
                 }
-                .weui-media-box__desc{
-                // position: relative;
-                .weui-ft{
+                .down {
+                    margin-left: 10px;
+                    display: none;
+                    vertical-align: baseline;
+                    width: 0;
+                    height: 0;
+                    border: 8px solid #000;
+                    border-color: transparent transparent #000;
+                }
+                .select-body {
+                    display: none;
+                    width: 100%;
+                    height: auto;
+                    background: #FFF;
+                    border: 1px solid #dfdfdf;
+                    border-bottom: none;
+                    clear: both;
                     position: absolute;
                     right: 0;
-                    top:0;
-                    width:50px;
-                    height:50px; 
-                    margin-top: 34px;
+                    top: 50px;
+                    z-index: 99;
+                    li {
+                        // height: 30px;
+                        line-height: 30px;
+                        border-bottom: 1px solid #dfdfdf;
+                    }
                 }
-                p{
-                    margin-right:50px;
-                    font-size:12px;   
-                    line-height:16px;
-                    height:32px;
-                } 
             }
+        }
+    }
+    .weui-panel {
+        .weui-panel__bd {
+            .weui-media-box {
+                .weui-media-box__hd {
+                    width: 56px;
+                    height: 54px;
+                    background: url(../img/calendar.svg) no-repeat;
+                    padding-top: 10px;
+                    background-size: 56px 54px;
+                    font-size: 12px;
+                    line-height: 16px;
+                    p {
+                        height: 0.5333rem;
+                        line-height: 0.64rem;
+                        font-size: 14px;
+                        vertical-align: middle;
+                        text-align: center;
+                    }
+                }
+                .weui-media-box__bd {
+                    margin-top: -8px;
+                    .weui-media-box__title {
+                        font-size: 14px;
+                        height: 20px;
+                        line-height: 20px;
+                        margin-bottom: 6px;
+                    }
+                    .weui-media-box__desc {
+                        // position: relative;
+                        .weui-ft {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 50px;
+                            height: 50px;
+                            margin-top: 34px;
+                        }
+                        p {
+                            margin-right: 50px;
+                            font-size: 12px;
+                            line-height: 16px;
+                            height: 32px;
+                        }
+                    }
+                }
             }
-            
+        }
+    }
+    footer {
+        width: 100%;
+        height: 56px;
+        .add-new {
+            position: fixed;
+            width: 100%;
+            height: 56px;
+            line-height: 56px;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(-180deg, #5dd6f6 0%, #41b9fc 99%);
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            span {
+                font-size: 24px;
+                padding-right: 6px;
+            }
         }
     }
 }
-footer{
-    width: 100%;
-    height: 56px;
-    .add-new{
+
+#coverShow {
+    display: none;
     position: fixed;
-    width: 100%;
-    height: 56px;
-    line-height: 56px;
-    bottom: 0;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 50px;
+    margin-left: -150px;
+    margin-top: -25px;
+}
+
+#cover {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
     left: 0;
-    background-image:linear-gradient(-180deg, #5dd6f6 0%, #41b9fc 99%);
-    font-size: 18px;
-    color: #fff;
-    text-align: center;
-    span{
-        font-size: 24px;
-        padding-right: 6px;
-    }
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.44);
 }
-}
-
-}
-
