@@ -13,7 +13,6 @@ require.config({
         ],
         'datepicker': ['./datapick'],
         'template': ['../script/template'],
-        'cookie': ['./cookie']
     },
     shim: {
         'jquery-weui': {
@@ -22,7 +21,7 @@ require.config({
     }
 
 });
-require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function() {
+require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
     // ajax的数据交互
     var href = location.search.split('=');
     var title = $("#title");
@@ -153,7 +152,9 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template', 'cookie'], function(
     };
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
-        $("#sliderValue").text((percent / 100 * 12).toFixed(1));
+        var time = Math.floor((percent / 100 * 12).toFixed(1)* 2)/ 2;
+        console.log(time);
+        $("#sliderValue").text(time);
     });
     // 数据的填入
     function getJson(data) {

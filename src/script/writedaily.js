@@ -139,7 +139,9 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
 
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
-        $("#sliderValue").text((percent / 100 * 15).toFixed(1));
+        var time = Math.floor((percent / 100 * 12).toFixed(1)* 2)/ 2;
+        console.log(time);
+        $("#sliderValue").text(time);
     });
 
     var title = $("#title");
