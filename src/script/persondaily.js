@@ -52,8 +52,7 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker'], function($, weui, t
         var covershow = document.getElementById("coverShow");
         cover.style.display = 'block';
         covershow.style.display = 'block';
-    }
-
+    };
     function hidden_coverit() {
         var cover = document.getElementById("cover");
         var covershow = document.getElementById("coverShow");
@@ -64,17 +63,16 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker'], function($, weui, t
     // ajax后台获取数据，并用前端模板进行拼接显示
     // data变化 org变化  uid变化  daytype变化  
     function getContent(date, org, daytype, uid, type) {
-        coverit();
+         coverit();
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenalsearch",
+            url: "http://47.93.186.65/salienoa/index.php/home/api/persenalsearch",
             dataType: "jsonp",
             data: 'date=' + date + '&org=' + org + '&uid=' + uid + '&daytype=' + daytype,
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
-                if(data){hidden_coverit()}
                 if (type == 2) {
                     artTemp(allorg, 'org', data);
                     artTemp(alluid, 'uid', data);
@@ -90,8 +88,9 @@ require(['jquery', 'jquery-weui', 'template', 'datepicker'], function($, weui, t
                     getAuthority();
                 } else if (type == 4) {
                     artTemp(personcontent, 'personContent', data);
-                }
+                }; 
                 setStorage(data);
+                hidden_coverit();
             },
             error: function() {
                 alert("fail");

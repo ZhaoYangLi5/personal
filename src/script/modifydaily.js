@@ -33,7 +33,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
     $.ajax({
         type: "GET",
         async: false,
-        url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenaloa",
+        url: "http://47.93.186.65//salienoa/index.php/home/api/persenaloa",
         dataType: "jsonp",
         data: href[0].substring(1) + "=" + href[1],
         jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -159,8 +159,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
     function getJson(data) {
         var name = data.U_NAME_FULL + "-" + data.ORG_NAME_FULL + "-" + data.RYLB;
         title.html(name);
-        jobType.val(data.TASKTYPE_ID);
-        var date = new Date(data.TASKEXEM_SUBMITDATE).pattern("yyyy-MM-dd EE")
+        var date = new Date(data.TASKEXEM_DATE).pattern("yyyy-MM-dd EE")
         sdate.text(date);
         project.val(data.PROJECT_NAME_FULL).data('num', data.PROJECT_ID);
         $("#sliderValue").html(data.TASKEXEM_HOUR);
@@ -179,7 +178,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/personalupd",
+            url: "http://47.93.186.65//salienoa/index.php/home/api/personalupd",
             dataType: "jsonp",
             data: 'taskexem_id=' + href[1] + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val(),
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)

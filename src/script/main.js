@@ -18,12 +18,13 @@ require(['jquery'], function() {
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/login",
+            url: "http://47.93.186.65/salienoa/index.php/home/api/login",
             dataType: "jsonp",
             data: 'uid=' + $uid + '&pword=' + $pword,
             jsonpCallback: "flightHandler",
             success: function(data) {
                 if (data.res == false) {
+                    $(".prompt").css("visibility","visible")
                     return false;
                 }
                 setStorage(data);

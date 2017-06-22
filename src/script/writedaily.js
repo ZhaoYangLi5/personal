@@ -26,7 +26,7 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
     $.ajax({
         type: "GET",
         async: false,
-        url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenaloa",
+        url: "http://47.93.186.65/salienoa/index.php/home/api/persenaloa",
         dataType: "jsonp",
         data: href[0].substring(1) + "=" + href[1],
         jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
@@ -46,11 +46,18 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
         var oList = $('#list');
         var fruits = data.ALL_PROJECT;
 
-        $("#project").on('keyup', function() {
+        $("#project").on({
+            'keyup': function() {
                 var keyWord = $(this).val();
                 var fruitList = searchByRegExp(keyWord, fruits);
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
                 renderFruits(fruitList);
                 $("#list").css('display', "block");
+            },'focus':function(){
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
+            },'blur':function(){  
+                $(this).val().trim().length>0?$("#project").parent().find('span').removeClass():$("#project").parent().find('span').addClass('icon-work_project_search');
+            }
             })
             // 搜索栏的定位
         $('.project ul').css({
@@ -137,6 +144,10 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
 
     }
 
+    $(".weui-cells").on('click',function(){
+        $("#list").hide();
+    })
+
     // slider的初始化与转化
     $('#jobTime').slider(function(percent) {
         var time = Math.floor((percent / 100 * 12).toFixed(1)* 2)/ 2;
@@ -169,7 +180,7 @@ require(['jquery', 'jquery-weui', 'datepicker'], function() {
         $.ajax({
             type: "GET",
             async: false,
-            url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/personaladd",
+            url: "http://47.93.186.65/salienoa/index.php/home/api/personaladd",
             dataType: "jsonp",
             data: 'org_id=' + org_id + '&taskm_acceptor=' + taskm_acceptor + '&taskm_type=' + $('.weui-check').val() + '&tasktype_id=' + jobType.val() + '&taskexem_date=' + sdate.text().slice(0, 10) + '&project_id=' + $("#project").data('num') + '&taskexem_hour=' + $("#sliderValue").text() + '&taskexem_content=' + jobContent.val() + '&taskm_cg=' + jobResults.val(),
             jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)

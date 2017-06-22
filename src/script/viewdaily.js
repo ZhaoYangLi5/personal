@@ -64,7 +64,7 @@
          '<div class="weui-cell__bd">' +
          '<p>日期</p>' +
          '</div>' +
-         '<div class="weui-cell__ft">{{data.TASKEXEM_SUBMITDATE}}</div>' +
+         '<div class="weui-cell__ft">{{data.TASKEXEM_DATE}}</div>' +
          '</div>' +
          '<div class="weui-cell">' +
          '<div class="weui-cell__hd"><span class="icon-work_class"></span></div>' +
@@ -108,7 +108,7 @@
      $.ajax({
          type: "GET",
          async: false,
-         url: "http://weixin.salien-jd.com/salienoa/index.php/home/api/persenaloa",
+         url: "http://47.93.186.65/salienoa/index.php/home/api/persenaloa",
          dataType: "jsonp",
          data: href[0].substring(1) + "=" + href[1],
          jsonp: "callback", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
