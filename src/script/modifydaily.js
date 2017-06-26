@@ -81,7 +81,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
             var item = null;
             for (var i = 0; i < len; i++) {
                 item = document.createElement('li');
-                item.innerHTML = list[i].PROJECT_NAME_FULL;
+                item.innerHTML = list[i].PROJECT_NAME;
                 item.dataset.num = list[i].PROJECT_ID;
                 oList.append(item);
             }
@@ -96,7 +96,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
             var reg = new RegExp(keyWord);
             for (var i = 0; i < len; i++) {
                 //如果字符串中不包含目标字符会返回-1
-                if (list[i].PROJECT_NAME_FULL.match(reg)) {
+                if (list[i].PROJECT_NAME.match(reg)) {
                     arr.push(list[i]);
                 }
             }
@@ -161,7 +161,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
         title.html(name);
         var date = new Date(data.TASKEXEM_DATE).pattern("yyyy-MM-dd EE")
         sdate.text(date);
-        project.val(data.PROJECT_NAME_FULL).data('num', data.PROJECT_ID);
+        project.val(data.PROJECT_NAME).data('num', data.PROJECT_ID);
         $("#sliderValue").html(data.TASKEXEM_HOUR);
         $("#sliderTrack").width((data.TASKEXEM_HOUR / 12 * 100).toFixed(1) + "%");
         $("#sliderHandler").css('left', (data.TASKEXEM_HOUR / 12 * 100).toFixed(1) + "%");
@@ -185,6 +185,7 @@ require(['jquery', 'jquery-weui', 'datepicker', 'template'], function() {
             jsonpCallback: "flightHandler", //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
             success: function(data) {
                 $.toptip('操作成功', 'success');
+                window.open('./persondaily.html','_self');
             },
             error: function() {
                 alert("fail");
